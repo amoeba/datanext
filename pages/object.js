@@ -14,16 +14,21 @@ export default class extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const query_url =
-      'https://cn.dataone.org/cn/v2/query/solr/?q=id:"' +
+      'https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=id:"' +
       this.props.url.query.id +
       '"&rows=1&wt=json';
-    const res = await fetch(query_url);
-    const json = await res.json();
-    this.setState({
-      object: json.response.docs[0]
-    });
+
+    fetch(query_url)
+      .then(req => {
+        return req.json();
+      })
+      .then(data => {
+        this.setState({
+          object: data.response.docs[0]
+        });
+      });
   }
 
   render() {
