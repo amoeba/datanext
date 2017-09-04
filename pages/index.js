@@ -31,7 +31,10 @@ export default class MyPage extends React.Component {
           {this.state.docs.map((doc, i) => {
             return (
               <li key={i}>
-                <Link href={"/object/" + urlencode(doc.id)}>
+                <Link
+                  href={"/object?id=" + urlencode(doc.id)}
+                  as={"/object/" + urlencode(doc.id)}
+                >
                   <a>{doc.title}</a>
                 </Link>
               </li>

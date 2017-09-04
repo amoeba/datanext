@@ -4,22 +4,20 @@ import "isomorphic-fetch";
 import Header from "../components/header";
 
 export default class extends React.Component {
-  static async getInitialProps({ query: { id } }) {
-    return { id };
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       loaded: false,
-      object: {}
+      object: {
+        title: "Loading..."
+      }
     };
   }
 
   async componentDidMount() {
     const query_url =
       'https://cn.dataone.org/cn/v2/query/solr/?q=id:"' +
-      this.props.id +
+      this.props.url.query.id +
       '"&rows=1&wt=json';
     const res = await fetch(query_url);
     const json = await res.json();
