@@ -1,101 +1,80 @@
-import Link from "next/link";
 import React from "react";
+import _ from "lodash"
+import Head from 'next/head'
 import Header from "../components/header";
 import Controls from "../components/controls";
 import SearchResults from "../components/searchResults";
+import "../static/style.css"
 
-export default class MyPage extends React.Component {
+export default class extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      query: "arctic*",
-      n: 5,
-      docs: []
+      query: "*arctic*", // Default query param
+      n: 5,              // Default query param
+      docs: [],
+      isLoading: false
     };
+
+    this.changeQuery = _.debounce(this.changeQuery, 500);
+    this.changeN = _.debounce(this.changeN, 500);
   }
 
   componentDidMount() {
-    fetch(
-      "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
-        this.state.query +
-        "+AND+formatType:METADATA&rows=" +
-        this.state.n +
-        "&fl=id,title,abstract&wt=json"
-    )
+    this.setState({isLoading: true})
+    this.getResults()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // TODO: Refactor so this scales as I add form inputs
+    if (prevState.query != this.state.query || 
+        prevState.n != this.state.n) {
+      this.getResults()
+    }
+  }
+
+  getResults() {
+    const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
+      this.state.query +
+      "+AND+formatType:METADATA&rows=" +
+      this.state.n +
+      "&fl=id,title,datasource&&wt=json";
+
+    fetch(url)
       .then(req => {
         return req.json();
       })
       .then(data => {
         this.setState({
-          docs: data.response.docs
+          docs: data.response.docs,
+          isLoading: false
         });
-      });
+      })
+      .catch(e => console.log(e));
   }
 
-  doQuery() {
-    fetch(
-      "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
-        this.state.query +
-        "+AND+formatType:METADATA&rows=" +
-        this.state.n +
-        "&fl=id,title,abstract&wt=json"
-    )
-      .then(req => {
-        return req.json();
-      })
-      .then(data => {
-        this.setState({
-          docs: data.response.docs
-        });
-      });
-  }
-
-  changeQuery = data => {
-    this.setState({ query: data.target.value });
-
-    fetch(
-      "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
-        this.state.query +
-        "+AND+formatType:METADATA&rows=" +
-        data.target.value +
-        "&fl=id,title,abstract&wt=json"
-    )
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({
-          docs: data.response.docs
-        });
-      });
+  changeQuery = value => {
+    this.setState({
+      query: value,
+      isLoading: true
+    });
   };
 
-  changeN = data => {
-    this.setState({ n: data.target.value });
-
-    fetch(
-      "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
-        this.state.query +
-        "+AND+formatType:METADATA&rows=" +
-        data.target.value +
-        "&fl=id,title,abstract&wt=json"
-    )
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        this.setState({
-          docs: data.response.docs
-        });
-      });
+  changeN = value => {
+    this.setState({
+      n: value,
+      isLoading: true
+    });
   };
 
   render() {
     return (
       <div>
+        <Head>
+      <link rel="stylesheet" href="/_next/static/style.css" />
+    </Head>
         <Header />
-        <p>{this.state.n}</p>
         <Controls
           query={this.state.query}
           n={this.state.n}

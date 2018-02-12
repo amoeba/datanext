@@ -11,7 +11,7 @@ export default class SearchResult extends React.Component {
             href={"/object?id=" + urlencode(this.props.doc.id)}
             as={"/object/" + urlencode(this.props.doc.id)}
           >
-            <a>{this.props.doc.title}</a>
+            <a>{this.props.doc.title} [{this.props.doc.datasource}]</a>
           </Link>
         </li>
       </div>
