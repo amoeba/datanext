@@ -2,41 +2,50 @@ import React from "react";
 import Link from "next/link";
 import "isomorphic-fetch";
 import Header from "../components/header";
+import convert from "xml-js"
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
-      object: {
-        title: "Loading..."
-      }
+      isLoading: false,
+      object: null
     };
   }
 
   componentDidMount() {
-    const query_url =
-      'https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=id:"' +
-      this.props.url.query.id +
-      '"&rows=1&wt=json';
+    const object_url =
+      'https://cn-stage.test.dataone.org/cn/v2/object/' + this.props.url.query.id;
+    
+    this.setState({
+      isLoading: true
+    })
 
-    fetch(query_url)
+    fetch(object_url)
       .then(req => {
-        return req.json();
+        return req.text()
       })
       .then(data => {
         this.setState({
-          object: data.response.docs[0]
+          object: convert.xml2json(data, { compact: true, spaces: 4 }),
+          isLoading: false
         });
       });
   }
 
   render() {
+    let loading = null
+
+    if (this.state.isLoading) {
+      loading = <span>Loading...</span>
+    }
+
     return (
       <div>
         <Header />
-        <h2>{this.state.object.title}</h2>
-        <p>{this.state.object.abstract}</p>
+        <h2>{this.props.url.query.id}</h2>
+        <p>{loading}</p>
+        <pre>{this.state.object}</pre>
       </div>
     );
   }
