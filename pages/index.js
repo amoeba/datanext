@@ -69,11 +69,27 @@ export default class extends React.Component {
   };
 
   render() {
+    let loading = null
+
+    if (this.state.isLoading) {
+      loading = <span>Loading...</span>
+    }
+
     return (
       <div>
         <Head>
-      <link rel="stylesheet" href="/_next/static/style.css" />
-    </Head>
+          <link rel="stylesheet" href="/_next/static/style.css" />
+          <script type="application/ld+json">
+            {`{
+              "@context": {
+                "@vocab": "http://schema.org/"
+              },
+              "@type": "DataCatalog",
+              "name": "Test DataCatalog name",
+              "description": "Test DataCatalog description"
+            }`}
+          </script>
+        </Head>
         <Header />
         <Controls
           query={this.state.query}
@@ -81,6 +97,7 @@ export default class extends React.Component {
           changeQuery={this.changeQuery}
           changeN={this.changeN}
         />
+        {loading}
         <SearchResults docs={this.state.docs} />
       </div>
     );
