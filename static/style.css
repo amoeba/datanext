@@ -12,3 +12,11 @@ label {
   margin: 0.5em;
   padding: 0.5em;
 }
+
+.search-result li {
+  margin: 2px;
+}
+
+.loading {
+  background-color: #EEE;
+}

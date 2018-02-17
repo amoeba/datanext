@@ -35,6 +35,10 @@ export default class extends React.Component {
   }
 
   getResults() {
+    this.setState({
+      docs: Array(this.state.n).fill()
+    })
+
     const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
       this.state.query +
       "+AND+formatType:METADATA&rows=" +
