@@ -15,9 +15,7 @@ export default class extends React.Component {
           <title>Package</title>
         </Head>
         <Header />
-        table
         <PackageTable id={urlencode.decode(this.props.url.query.package)} />
-        table
         <Metadata id={urlencode.decode(this.props.url.query.metadata)} />
       </div>
     );
