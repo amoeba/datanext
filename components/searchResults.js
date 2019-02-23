@@ -8,7 +8,6 @@ export default class SearchResults extends React.Component {
   render() {
     return (
       <div id="search-results">
-        <p>Found {this.props.docs.length} document(s)</p>
         <ul>
           {this.props.docs.map((doc, i) => {
             return <SearchResult key={i} doc={doc} />;

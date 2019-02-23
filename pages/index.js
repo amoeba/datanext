@@ -4,7 +4,6 @@ import Head from 'next/head'
 import Header from "../components/header";
 import Controls from "../components/controls";
 import SearchResults from "../components/searchResults";
-import "../static/style.css"
 
 export default class extends React.Component {
   constructor(props) {
@@ -12,7 +11,7 @@ export default class extends React.Component {
 
     this.state = {
       query: "*arctic*", // Default query param
-      n: 5,              // Default query param
+      n: 20,              // Default query param
       docs: [],
       isLoading: false
     };
@@ -36,12 +35,18 @@ export default class extends React.Component {
 
   getResults() {
     this.setState({
-      docs: Array(this.state.n).fill()
+      docs: Array(Number(this.state.n)).fill()
     })
+
+    function sleeper(ms) {
+      return function(x) {
+        return new Promise(resolve => setTimeout(() => resolve(x), ms));
+      };
+    }
 
     const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
       this.state.query +
-      "+AND+formatType:METADATA&rows=" +
+      "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
       this.state.n +
       "&fl=id,title,datasource&&wt=json";
 
@@ -49,6 +54,7 @@ export default class extends React.Component {
       .then(req => {
         return req.json();
       })
+      .then(sleeper(0))
       .then(data => {
         this.setState({
           docs: data.response.docs,
@@ -76,7 +82,7 @@ export default class extends React.Component {
     let loading = null
 
     if (this.state.isLoading) {
-      loading = <span>Loading...</span>
+      loading = <span>Fetching {this.state.n} document(s)...</span>
     }
 
     return (

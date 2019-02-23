@@ -16,13 +16,14 @@ export default class SearchResult extends React.Component {
       </li>
     } else {
       li = <li key={this.props.id} className="loading">
-        Loading
+        ...
       </li>
     }
     return (
       <div className="search-result">
         {li}
       </div>
+
     );
   }
 }

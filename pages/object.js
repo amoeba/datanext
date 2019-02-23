@@ -4,6 +4,7 @@ import Head from 'next/head'
 import "isomorphic-fetch";
 import Header from "../components/header";
 var parseString = require('xml2js').parseString;
+import Metadata from "../components/metadata";
 
 export default class extends React.Component {
   constructor(props) {
@@ -11,17 +12,13 @@ export default class extends React.Component {
     this.state = {
       isLoading: false,
       object: null,
-      title: "...",
-      author: "...",
-      date: "...",
-      publisher: "...",
-      abstract: "..."
+      html: null
     };
   }
 
   componentDidMount() {
     const object_url =
-      'https://cn-stage.test.dataone.org/cn/v2/object/' + this.props.url.query.id;
+      'https://cn-stage.test.dataone.org/cn/v2/views/metacatui/' + this.props.url.query.id;
     
     this.setState({
       isLoading: true
@@ -32,26 +29,13 @@ export default class extends React.Component {
         return req.text()
       })
       .then(data => {
-        parseString(data, (err, result) => {
-          const dataset = result["eml:eml"].dataset[0];
-          this.setState({
-            object: JSON.stringify(result),
-            isLoading: false,
-            title: dataset.title[0],
-            date: dataset.pubDate[0],
-            abstract: dataset.abstract[0].para[0]
-          })
-        });
+        this.setState({
+          html: data
+        })
       });
   }
 
   render() {
-    let loading = null
-
-    if (this.state.isLoading) {
-      loading = <span>Loading...</span>
-    }
-
     return (
       <div>
         <Head>
@@ -71,13 +55,7 @@ export default class extends React.Component {
           </script>
         </Head>
         <Header />
-        <h2>{this.state.title} (PID: {this.props.url.query.id})</h2>
-        <p>pubDate: {this.state.date}</p>
-        <p>Abstract: {this.state.abstract}</p>
-        <p>{loading}</p>
-        
-        <h3>Raw JSON (for debug purposes)</h3>
-        <textarea>{this.state.object}</textarea>
+        <Metadata html={this.state.html} />
       </div>
     );
   }
