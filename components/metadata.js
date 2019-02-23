@@ -6,6 +6,7 @@ export default class Metadata extends React.Component {
     super(props);
 
     this.state = {
+      isLoaded: false,
       html: null
     };
   }
@@ -20,12 +21,17 @@ export default class Metadata extends React.Component {
       })
       .then(data => {
         this.setState({
+          isLoaded: true,
           html: data
         })
       });
   }
 
   render() {
+    if (!this.state.isLoaded) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div dangerouslySetInnerHTML={{__html: this.state.html}}></div>
     );

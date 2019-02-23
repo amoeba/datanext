@@ -5,6 +5,7 @@ export default class PackageTable extends React.Component {
     super(props);
     
     this.state = {
+      isLoaded: false,
       data: null
     };
   }
@@ -21,6 +22,7 @@ export default class PackageTable extends React.Component {
       })
       .then(json => {
         this.setState({
+          isLoaded: true,
           data: json
         })
       });
@@ -29,6 +31,10 @@ export default class PackageTable extends React.Component {
   render() {
     if (!this.state.data || !this.state.data.response || !this.state.data.response.docs) {
       return null;
+    }
+
+    if (!this.state.isLoaded) {
+      return "Loading...";
     }
 
     return (<div>
