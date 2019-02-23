@@ -1,12 +1,36 @@
 import React from "react";
 
-export default class SearchResult extends React.Component {
-  render() {
-    let table = null;
+export default class PackageTable extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      data: null
+    };
+  }
 
-    if (!this.props.data || !this.props.data.response || !this.props.data.response.docs) {
-      return table;
+  componentDidMount() {
+    const url = process.env.api_base + 
+      'query/solr/?q=resourceMap:"' + 
+      this.props.id + 
+      '"&rows=1&fl=id,fileName,formatType,formatId,size&wt=json';
+
+    fetch(url)
+      .then(req => {
+        return req.json()
+      })
+      .then(json => {
+        this.setState({
+          data: json
+        })
+      });
+  }
+
+  render() {
+    if (!this.state.data || !this.state.data.response || !this.state.data.response.docs) {
+      return null;
     }
+
     return (<div>
       <table>
         <thead>
@@ -17,7 +41,7 @@ export default class SearchResult extends React.Component {
           </tr>
         </thead>
         <tbody>
-          {this.props.data.response.docs.map((doc, i) => {
+          {this.state.data.response.docs.map((doc, i) => {
             return (
               <tr key={i}>
                 <td>{doc.fileName || doc.id }</td>

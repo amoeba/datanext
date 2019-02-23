@@ -12,7 +12,7 @@ export default class Metadata extends React.Component {
 
   componentDidMount() {
     const object_url =
-      'https://cn-stage.test.dataone.org/cn/v2/views/metacatui/' + urlencode(this.props.id);
+      process.env.api_base + 'views/metacatui/' + urlencode(this.props.id);
 
     fetch(object_url)
       .then(req => {

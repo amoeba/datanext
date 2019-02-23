@@ -5,7 +5,7 @@ import urlencode from "urlencode";
 import PackageList from "../components/package_list.js";
 
 export default class SearchResult extends React.Component {
-  // TODO: Refactor using an HOC
+  // TODO: Refactor loading behavior using an HOC
   render() {
     if (this.props.doc) {
       return (

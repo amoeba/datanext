@@ -1,3 +1,6 @@
 module.exports = {
-  target: 'serverless'
+  target: 'serverless',
+  env: {
+    api_base: 'https://cn-stage.test.dataone.org/cn/v2/'
+  }
 }
