@@ -24,7 +24,6 @@ export default class SearchResult extends React.Component {
       <div className="search-result">
         {li}
       </div>
-
     );
   }
 }

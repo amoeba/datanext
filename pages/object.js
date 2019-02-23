@@ -3,7 +3,6 @@ import Link from "next/link";
 import Head from 'next/head'
 import "isomorphic-fetch";
 import Header from "../components/header";
-var parseString = require('xml2js').parseString;
 import Metadata from "../components/metadata";
 
 export default class extends React.Component {
