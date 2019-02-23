@@ -5,25 +5,23 @@ import urlencode from "urlencode";
 export default class SearchResult extends React.Component {
   // TODO: Refactor using an HOC
   render() {
-    let li = null;
     if (this.props.doc) {
-      li = <li key={this.props.id}>
-        <Link
-          href={"/object?id=" + urlencode(this.props.doc.id)}
-          as={"/object/" + urlencode(this.props.doc.id)}
-        >
-          <a>{this.props.doc.title} [{this.props.doc.datasource}]</a>
-        </Link>
-      </li>
+      return (
+        <li key={this.props.id}>
+          <Link
+            href={"/object?id=" + urlencode(this.props.doc.id)}
+            as={"/object/" + urlencode(this.props.doc.id)}
+          >
+            <a>{this.props.doc.title} [{this.props.doc.datasource}]</a>
+          </Link>
+        </li>
+      );
     } else {
-      li = <li key={this.props.id} className="loading">
+      return (
+        <li key={this.props.id} className="loading">
         ...
-      </li>
+        </li>
+      );
     }
-    return (
-      <div className="search-result">
-        {li}
-      </div>
-    );
   }
 }
