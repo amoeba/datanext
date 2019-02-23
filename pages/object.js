@@ -1,7 +1,8 @@
 import React from "react";
-import Link from "next/link";
 import Head from 'next/head'
 import "isomorphic-fetch";
+import urlencode from "urlencode";
+
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 
@@ -12,25 +13,6 @@ export default class extends React.Component {
       isLoading: false,
       html: null
     };
-  }
-
-  componentDidMount() {
-    const object_url =
-      'https://cn-stage.test.dataone.org/cn/v2/views/metacatui/' + this.props.url.query.id;
-    
-    this.setState({
-      isLoading: true
-    })
-
-    fetch(object_url)
-      .then(req => {
-        return req.text()
-      })
-      .then(data => {
-        this.setState({
-          html: data
-        })
-      });
   }
 
   render() {
@@ -53,7 +35,7 @@ export default class extends React.Component {
           </script>
         </Head>
         <Header />
-        <Metadata html={this.state.html} />
+        <Metadata id={urlencode.decode(this.props.url.query.id)} />
       </div>
     );
   }

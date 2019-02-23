@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash"
 import Head from 'next/head'
+
 import Header from "../components/header";
 import Controls from "../components/controls";
 import SearchResults from "../components/searchResults";
@@ -42,7 +43,7 @@ export default class extends React.Component {
       this.state.query +
       "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
       this.state.n +
-      "&fl=id,title,datasource&&wt=json";
+      "&fl=id,title,datasource,resourceMap&wt=json";
 
     fetch(url)
       .then(req => {
