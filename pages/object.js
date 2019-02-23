@@ -8,13 +8,15 @@ import Metadata from "../components/metadata";
 
 export default withRouter(class extends React.Component {
   render() {
+    const {query} = this.props.router;
+
     return (
       <div>
         <CustomHead>
           <title>Object</title>
         </CustomHead>
         <Header />
-        <Metadata id={urlencode.decode(this.props.url.query.id)} />
+        <Metadata id={urlencode.decode(query.id)} />
       </div>
     );
   }

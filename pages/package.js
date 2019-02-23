@@ -9,14 +9,16 @@ import PackageTable from "../components/package_table";
 
 export default withRouter(class extends React.Component {
   render() {
+    const {query} = this.props.router;
+
     return (
       <div>
         <CustomHead>
           <title>Package</title>
         </CustomHead>
         <Header />
-        <PackageTable id={urlencode.decode(this.props.url.query.package)} />
-        <Metadata id={urlencode.decode(this.props.url.query.metadata)} />
+        <PackageTable id={urlencode.decode(query.package)} />
+        <Metadata id={urlencode.decode(query.metadata)} />
       </div>
     );
   }
