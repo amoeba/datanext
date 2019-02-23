@@ -45,7 +45,7 @@ export default class Search extends React.Component {
       .then(data => {
         this.setState({
           docs: (data && data.response && data.response.docs) ? data.response.docs : [],
-          numFound: data.response.numFound,
+          numFound: (data && data.response) ? data.response.numFound || 0 : 0,
           isLoaded: true
         });
       })
