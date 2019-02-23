@@ -1,7 +1,7 @@
 import React from "react";
 import _ from "lodash"
 
-import Controls from "../components/controls";
+import Input from "./Input";
 import SearchResults from "../components/searchResults";
 
 export default class Search extends React.Component {
@@ -9,38 +9,33 @@ export default class Search extends React.Component {
     super(props);
 
     this.state = {
-      query: "*arctic*", // Default query param
-      n: 20,             // Default query param
+      params: {
+        queryTitle: '*',   // Default query param
+        query: '*arctic*',  // Default query param
+        n: 20,             // Default query param
+      },
       docs: [],
-      isLoading: false
+      numFound: null,
+      isLoaded: false
     };
-
-    this.changeQuery = _.debounce(this.changeQuery, 500);
-    this.changeN = _.debounce(this.changeN, 500);
   }
 
   componentDidMount() {
-    this.setState({isLoading: true})
     this.getResults()
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // TODO: Refactor so this scales as I add form inputs
-    if (prevState.query != this.state.query || 
-        prevState.n != this.state.n) {
-      this.getResults()
+    // TODO: Rewrite this so it scales as I add more stuff
+    if (!_.isEqual(prevState.params, this.state.params)) {
+      this.getResults();
     }
   }
 
   getResults() {
-    this.setState({
-      docs: Array(Number(this.state.n)).fill()
-    })
-
     const url = process.env.api_base + "query/solr/?q=" +
-      this.state.query +
-      "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
-      this.state.n +
+      this.state.params.query +
+      "+AND+title:" + this.state.params.queryTitle + "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
+      this.state.params.n +
       "&fl=id,title,datasource,resourceMap&wt=json";
 
     fetch(url)
@@ -49,45 +44,63 @@ export default class Search extends React.Component {
       })
       .then(data => {
         this.setState({
-          docs: data.response.docs,
-          isLoading: false
+          docs: (data && data.response && data.response.docs) ? data.response.docs : [],
+          numFound: data.response.numFound,
+          isLoaded: true
         });
       })
-      .catch(e => console.log(e));
+      .catch(e => console.log(e)); // TODO: Handle this
   }
 
-  changeQuery = value => {
-    this.setState({
-      query: value,
-      isLoading: true
-    });
-  };
+  changeQueryParams = _.debounce((what, value) => {
+    const nextParams = { ...this.state.params };
+    nextParams[what] = value;
 
-  changeN = value => {
-    this.setState({
-      n: value,
-      isLoading: true
-    });
-  };
+    this.setState({params: nextParams});
+  }, process.env.debounce);
 
   render () {
     let loading = null
 
     // TODO: Use HOC to encapsulte this logic
-    if (this.state.isLoading) {
+    if (!this.state.isLoaded) {
       loading = <span>Fetching {this.state.n} document(s)...</span>
     }
 
-
     return (<div>
-      <Controls
-          query={this.state.query}
-          n={this.state.n}
-          changeQuery={this.changeQuery}
-          changeN={this.changeN}
-        />
-        {loading}
-        <SearchResults docs={this.state.docs} />
-</div>);
+      <div id="controls">
+        <Input
+          type="text"
+          defaultValue={this.state.params.queryTitle}
+          what="queryTitle"
+          handler={this.changeQueryParams}
+          label="Title" />
+        <Input
+          type="text"
+          defaultValue={this.state.params.query}
+          what="query"
+          handler={this.changeQuery}
+          label="FullText" />
+        <Input
+          type="range"
+          min="1"
+          max="25"
+          defaultValue={this.state.params.n}
+          what="n"
+          handler={this.changeQueryParams}
+          label="Num. Results" 
+          after={this.state.n} />
+      </div>
+      {loading}
+      <SearchResults numFound={this.state.numFound} docs={this.state.docs} />
+      <style jsx>{`
+        #controls {
+          background-color: #eee;
+          border: 1px solid #ccc;
+          padding: 0.5rem;
+          margin: 0.5rem;
+        }
+      `}</style>
+    </div>);
   }
 }
