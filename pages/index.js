@@ -11,7 +11,7 @@ export default class extends React.Component {
 
     this.state = {
       query: "*arctic*", // Default query param
-      n: 20,              // Default query param
+      n: 20,             // Default query param
       docs: [],
       isLoading: false
     };
@@ -38,12 +38,6 @@ export default class extends React.Component {
       docs: Array(Number(this.state.n)).fill()
     })
 
-    function sleeper(ms) {
-      return function(x) {
-        return new Promise(resolve => setTimeout(() => resolve(x), ms));
-      };
-    }
-
     const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=" +
       this.state.query +
       "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
@@ -54,7 +48,6 @@ export default class extends React.Component {
       .then(req => {
         return req.json();
       })
-      .then(sleeper(0))
       .then(data => {
         this.setState({
           docs: data.response.docs,
@@ -81,6 +74,7 @@ export default class extends React.Component {
   render() {
     let loading = null
 
+    // TODO: Use HOC to encapsulte this logic
     if (this.state.isLoading) {
       loading = <span>Fetching {this.state.n} document(s)...</span>
     }

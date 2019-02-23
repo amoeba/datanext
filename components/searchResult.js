@@ -3,6 +3,7 @@ import React from "react";
 import urlencode from "urlencode";
 
 export default class SearchResult extends React.Component {
+  // TODO: Refactor using an HOC
   render() {
     let li = null;
     if (this.props.doc) {
