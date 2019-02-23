@@ -4,6 +4,8 @@ import CustomHead from '../components/custom_head';
 import Header from "../components/header";
 import Search from "../components/search";
 
+import "../style.scss"
+
 export default class extends React.Component {
   render() {
     return (

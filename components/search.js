@@ -2,6 +2,7 @@ import React from "react";
 import _ from "lodash"
 
 import Input from "./Input";
+import Select from "./Select";
 import SearchResults from "../components/searchResults";
 
 export default class Search extends React.Component {
@@ -12,10 +13,10 @@ export default class Search extends React.Component {
       params: {
         queryTitle: '*',   // Default query param
         query: '*arctic*',  // Default query param
-        n: 20,             // Default query param
+        n: 25,             // Default query param
       },
       docs: [],
-      numFound: null,
+      numFound: 0,
       isLoaded: false
     };
   }
@@ -25,7 +26,6 @@ export default class Search extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // TODO: Rewrite this so it scales as I add more stuff
     if (!_.isEqual(prevState.params, this.state.params)) {
       this.getResults();
     }
@@ -36,7 +36,7 @@ export default class Search extends React.Component {
       this.state.params.query +
       "+AND+title:" + this.state.params.queryTitle + "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
       this.state.params.n +
-      "&fl=id,title,datasource,resourceMap&wt=json";
+      "&fl=id,title,origin,pubDate,datasource,resourceMap&wt=json";
 
     fetch(url)
       .then(req => {
@@ -60,13 +60,6 @@ export default class Search extends React.Component {
   }, process.env.debounce);
 
   render () {
-    let loading = null
-
-    // TODO: Use HOC to encapsulte this logic
-    if (!this.state.isLoaded) {
-      loading = <span>Fetching {this.state.n} document(s)...</span>
-    }
-
     return (<div id="container">
       <div id="controls">
         <Input
@@ -81,18 +74,20 @@ export default class Search extends React.Component {
           what="query"
           handler={this.changeQuery}
           label="FullText" />
-        <Input
-          type="range"
-          min="1"
-          max="25"
+        <Select
           defaultValue={this.state.params.n}
           what="n"
           handler={this.changeQueryParams}
-          label="Num. Results" 
-          after={this.state.n} />
+          label="Num. Results">
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </Select>
       </div>
-      {loading}
-      <SearchResults numFound={this.state.numFound} docs={this.state.docs} />
+      <SearchResults
+        numFound={this.state.numFound}
+        docs={this.state.docs}
+        isLoaded={this.state.isLoaded} />
       <style jsx>{`
         #container {
           display: grid;

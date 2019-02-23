@@ -3,14 +3,19 @@ import SearchResult from "../components/searchResult";
 
 export default class SearchResults extends React.Component {
   render() {
+    if (!this.props.isLoaded) {
+      return("Loading...");
+    }
+
     return (
       <div id="search-results">
-        {this.props.numFound} resut(s) found.
+
+        <span>{this.props.numFound} result(s) found. Showing {this.props.docs.length}</span>
         <ul>
           {this.props.docs.map((doc, i) => {
             return (
-              <SearchResult 
-                key={i} 
+              <SearchResult
+                key={i}
                 doc={doc} />
             );
           })}
