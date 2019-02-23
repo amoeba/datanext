@@ -13,13 +13,22 @@ export default class Input extends React.Component {
         }} />
         {after}
         <style jsx>{`
+          div {
+            margin-bottom: 0.5rem;
+          }
+
           input {
             font-size: 100%;
+            width: 100%;
+          }
+
+          input[type=text] {
+            box-sizing: border-box;
           }
 
           label {
             display: inline-block;
-            width: 10rem;
+            margin-bottom: 0.25rem;
           }
         `}</style>
       </div>

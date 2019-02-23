@@ -67,7 +67,7 @@ export default class Search extends React.Component {
       loading = <span>Fetching {this.state.n} document(s)...</span>
     }
 
-    return (<div>
+    return (<div id="container">
       <div id="controls">
         <Input
           type="text"
@@ -94,11 +94,16 @@ export default class Search extends React.Component {
       {loading}
       <SearchResults numFound={this.state.numFound} docs={this.state.docs} />
       <style jsx>{`
+        #container {
+          display: grid;
+          grid-template-columns: 225px auto;
+          grid-column-gap: 0.5rem;
+        }
+
         #controls {
           background-color: #eee;
           border: 1px solid #ccc;
           padding: 0.5rem;
-          margin: 0.5rem;
         }
       `}</style>
     </div>);
