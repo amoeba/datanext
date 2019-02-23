@@ -1,8 +1,8 @@
 import React from "react";
-import Head from 'next/head'
 import "isomorphic-fetch";
 import urlencode from "urlencode";
 
+import CustomHead from '../components/custom_head';
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 
@@ -10,9 +10,9 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <Head>
+        <CustomHead>
           <title>Object</title>
-        </Head>
+        </CustomHead>
         <Header />
         <Metadata id={urlencode.decode(this.props.url.query.id)} />
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import Head from 'next/head'
 
+import CustomHead from '../components/custom_head';
 import Header from "../components/header";
 import Search from "../components/search";
 
@@ -8,9 +8,9 @@ export default class extends React.Component {
   render() {
     return (
       <div>
-        <Head>
+        <CustomHead>
           <title>Search</title>
-        </Head>
+        </CustomHead>
         <Header />
         <Search />
       </div>
