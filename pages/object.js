@@ -10,6 +10,9 @@ export default class extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Object</title>
+        </Head>
         <Header />
         <Metadata id={urlencode.decode(this.props.url.query.id)} />
       </div>

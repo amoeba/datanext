@@ -1,4 +1,5 @@
 import React from "react";
+import Head from 'next/head'
 import "isomorphic-fetch";
 import urlencode from "urlencode";
 
@@ -10,6 +11,9 @@ export default class extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+          <title>Package</title>
+        </Head>
         <Header />
         table
         <PackageTable id={urlencode.decode(this.props.url.query.package)} />
