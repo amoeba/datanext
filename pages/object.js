@@ -1,5 +1,4 @@
 import React from "react";
-import "isomorphic-fetch";
 import { withRouter } from 'next/router';
 import urlencode from "urlencode";
 
