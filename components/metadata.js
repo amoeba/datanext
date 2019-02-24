@@ -33,7 +33,7 @@ export default class Metadata extends React.Component {
     }
 
     return (
-      <div dangerouslySetInnerHTML={{__html: this.state.html}}></div>
+      <div id="metadata" dangerouslySetInnerHTML={{__html: this.state.html}}></div>
     );
   }
 }
