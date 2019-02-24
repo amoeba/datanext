@@ -11,12 +11,17 @@ export default class Metadata extends React.Component {
     const repository = this.props.doc.datasource + '. ';
 
 
-    return (<span class="data_citation">
-      <span class="citation_author">{authors}</span>
-      <span class="citation_pub_year">{pubYear}</span>
-      <span class="citation_title">{title}</span>
-      <span class="citation_repository">{repository}</span>
-      <span class="citation_id">{this.props.pid}</span>
+    return (<span >
+      <span>{authors}</span>
+      <span>{pubYear}</span>
+      <span className="title">{title}</span>
+      <span>{repository}</span>
+      <span>{this.props.pid}</span>
+      <style jsx>{`
+        span.title {
+          font-weight: bold;
+        }
+      `}</style>
     </span>);
   }
   

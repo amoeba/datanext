@@ -11,7 +11,7 @@ export default class SearchResult extends React.Component {
 
     if (this.props.doc.resourceMap && this.props.doc.resourceMap.length > 0) {
       items = this.props.doc.resourceMap.map(m => {
-        return (<li class="search_result" key={m}>
+        return (<li className="search_result" key={m}>
           <abbr title="Data Package">📦</abbr>
         <Link
           href={'/package?package=' + urlencode(m) + '&metadata=' + urlencode(metadata)}
@@ -21,10 +21,16 @@ export default class SearchResult extends React.Component {
             <DataCitation pid={metadata} doc={this.props.doc}/>
           </a>
         </Link>
+        <style jsx>{`
+          li {
+            margin: 0 0 0.5rem 0;
+            line-height: 1.5rem;
+          }
+        `}</style>
         </li>);
       });
     } else {
-      items = (<li class="search_result">
+      items = (<li className="search_result">
         <abbr title="Metadata Only">📀</abbr>
         <Link
           href={"/object?id=" + urlencode(metadata)}
@@ -34,15 +40,16 @@ export default class SearchResult extends React.Component {
           <DataCitation pid={metadata} doc={this.props.doc}/>
           </a>
         </Link>
+        <style jsx>{`
+          li {
+            margin: 0 0 0.5rem 0;
+            line-height: 1.5rem;
+          }
+        `}</style>
       </li>);
     }
     return (<div>
       { items }
-      <style jsx>{`
-        li {
-          margin: 2rem;
-        }
-      `}</style>
     </div>);
   }
 }
