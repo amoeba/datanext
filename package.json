@@ -14,6 +14,7 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "urlencode": "^1.1.0"
+    "urlencode": "^1.1.0",
+    "xmldom": "^0.1.27"
   }
 }
