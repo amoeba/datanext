@@ -12,9 +12,10 @@ export default class Search extends React.Component {
 
     this.state = {
       params: {
-        queryTitle: '*',   // Default query param
-        query: '*arctic*',  // Default query param
-        n: 25,             // Default query param
+        queryTitle: '*',
+        query: '*arctic*',
+        n: 25,
+        datasource: null
       },
       docs: [],
       numFound: 0,
@@ -49,6 +50,10 @@ export default class Search extends React.Component {
       url += 'title:' + this.state.params.queryTitle;
     }
 
+    if (this.state.params.datasource) {
+      url += '+AND+datasource:"' + this.state.params.datasource + '"';
+    }
+
     
     url += '+AND+formatType:METADATA';
     url += '&rows=' + this.state.params.n || 25;
@@ -80,7 +85,10 @@ export default class Search extends React.Component {
 
   render () {
     return (<div id="container">
-      <Controls params={this.state.params} changeQueryParams={this.changeQueryParams} />
+      <Controls 
+        params={this.state.params} 
+        changeQueryParams={this.changeQueryParams} 
+        appData={this.props.appData} />
       <SearchResults
         numFound={this.state.numFound}
         docs={this.state.docs}

@@ -2,7 +2,10 @@ import React from "react";
 
 export default class Controls extends React.Component {
   render() {
-  
+    const nodes = this.props.appData.nodes.map(n => {
+      return (<option key={n.id} value={n.id}>{n.name}</option>);
+    });
+
   return (
     <div id="controls">
       <label htmlFor="filterQueryTitle">Title</label>
@@ -35,18 +38,35 @@ export default class Controls extends React.Component {
         <option value="50">50</option>
         <option value="100">100</option>
       </select>
+
+      <label htmlFor="filterNode">Node</label>
+      <select
+        id="filterNode" 
+        defaultValue={this.props.params.datasource}
+        onChange={e => { 
+          this.props.changeQueryParams("datasource", e.target.value);
+        }}>
+          <option value="">All Nodes</option>
+          { nodes}
+      </select>
       <style jsx>{`
         label {
           display: block;
-          width: 100%;
         }
         label,
         input {
+          box-sizing: border-box;
           padding: 0.25rem;
+          width: 100%;
         }
 
-        input {
+        input, 
+        select {
           font-size: 100%;
+        }
+
+        select {
+          max-width: 100%;
         }
       `}</style>
     </div>);
