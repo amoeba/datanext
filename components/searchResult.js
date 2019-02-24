@@ -26,6 +26,11 @@ export default class SearchResult extends React.Component {
             margin: 0 0 0.5rem 0;
             line-height: 1.5rem;
           }
+
+          abbr {
+            text-decoration: none;
+            margin-right: 0.25rem;
+          }          
         `}</style>
         </li>);
       });
@@ -45,6 +50,11 @@ export default class SearchResult extends React.Component {
             margin: 0 0 0.5rem 0;
             line-height: 1.5rem;
           }
+
+          abbr {
+            text-decoration: none;
+            margin-right: 0.25rem;
+          }          
         `}</style>
       </li>);
     }
