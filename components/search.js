@@ -3,6 +3,7 @@ import _ from "lodash"
 
 import Input from "./Input";
 import Select from "./Select";
+import Controls from "./controls";
 import SearchResults from "../components/searchResults";
 
 export default class Search extends React.Component {
@@ -32,12 +33,30 @@ export default class Search extends React.Component {
   }
 
   getResults() {
-    const url = process.env.api_base + "query/solr/?q=" +
-      this.state.params.query +
-      "+AND+title:" + this.state.params.queryTitle + "+AND+formatType:METADATA+AND+formatId:eml*&rows=" +
-      this.state.params.n +
-      "&fl=id,title,origin,pubDate,datasource,resourceMap&wt=json";
+    // TODO: Factor this out and make it better at producing valid queries
+    let url = process.env.api_base + 'query/solr/?q=';
+    
+    if (this.state.params.query) {
+      url += this.state.params.query;
+    }
 
+    if (this.state.params.queryTitle) {
+      // And with the query only if needed
+      if (this.state.params.query) {
+        url += '+AND+'
+      }
+
+      url += 'title:' + this.state.params.queryTitle;
+    }
+
+    
+    url += '+AND+formatType:METADATA';
+    url += '&rows=' + this.state.params.n || 25;
+    url += "&fl=id,title,origin,pubDate,datasource,resourceMap";
+    url += '&sort=dateUploaded+desc';
+    url += '&wt=json';
+
+    console.log(url)
     fetch(url)
       .then(req => {
         return req.json();
@@ -61,29 +80,7 @@ export default class Search extends React.Component {
 
   render () {
     return (<div id="container">
-      <div id="controls">
-        <Input
-          type="text"
-          defaultValue={this.state.params.queryTitle}
-          what="queryTitle"
-          handler={this.changeQueryParams}
-          label="Title" />
-        <Input
-          type="text"
-          defaultValue={this.state.params.query}
-          what="query"
-          handler={this.changeQuery}
-          label="FullText" />
-        <Select
-          defaultValue={this.state.params.n}
-          what="n"
-          handler={this.changeQueryParams}
-          label="Num. Results">
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </Select>
-      </div>
+      <Controls params={this.state.params} changeQueryParams={this.changeQueryParams} />
       <SearchResults
         numFound={this.state.numFound}
         docs={this.state.docs}

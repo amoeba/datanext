@@ -9,8 +9,7 @@ export default class SearchResults extends React.Component {
 
     return (
       <div id="search-results">
-
-        <span>{this.props.numFound} result(s) found. Showing {this.props.docs.length}</span>
+        <span>{this.props.numFound} result(s) found. Showing {this.props.docs.length}.</span>
         <ul>
           {this.props.docs.map((doc, i) => {
             return (
@@ -20,6 +19,13 @@ export default class SearchResults extends React.Component {
             );
           })}
         </ul>
+        <style jsx>{`
+          ul {
+            list-style-type: none;
+            margin: 0.5rem 0 0 0;
+            padding: 0;
+          }
+        `}</style>
       </div>
     );
   }
