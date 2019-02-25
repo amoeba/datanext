@@ -15,7 +15,8 @@ export default class SearchResults extends React.Component {
             return (
               <SearchResult
                 key={i}
-                doc={doc} />
+                doc={doc}
+                appData={this.props.appData} />
             );
           })}
         </ul>

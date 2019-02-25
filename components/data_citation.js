@@ -4,12 +4,17 @@ export default class Metadata extends React.Component {
 
 
   render () {
-    // {this.props.doc.origin.join(', ')}. {}. {this.props.doc.title}. {this.props.doc.datasource}. {metadata}.
+    // Try to find a better node name
+    const nodes = this.props.appData.nodes;
+
+    let betterNodeName = nodes.find(el => {
+      return el.id === this.props.doc.datasource
+    });
+
     const authors = this.props.doc.origin ? this.props.doc.origin.join(', ') + '. ' : '';
     const pubYear = this.props.doc.pubDate ? new Date(this.props.doc.pubDate).getFullYear() + '. ' : '';
     const title = this.props.doc.title + '. ' || '';
-    const repository = this.props.doc.datasource + '. ';
-
+    const repository = (betterNodeName ? betterNodeName.name : this.props.doc.datasource) + '. ';
 
     return (<span >
       <span>{authors}</span>

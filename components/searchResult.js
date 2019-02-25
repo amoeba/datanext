@@ -18,7 +18,7 @@ export default class SearchResult extends React.Component {
           as={'/package/' + urlencode(m)}
         >
           <a>
-            <DataCitation pid={metadata} doc={this.props.doc}/>
+            <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
           </a>
         </Link>
         <style jsx>{`
@@ -42,7 +42,7 @@ export default class SearchResult extends React.Component {
           as={"/object/" + urlencode(metadata)}
         >
           <a>
-          <DataCitation pid={metadata} doc={this.props.doc}/>
+          <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
           </a>
         </Link>
         <style jsx>{`

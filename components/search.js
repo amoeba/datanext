@@ -92,7 +92,8 @@ export default class Search extends React.Component {
       <SearchResults
         numFound={this.state.numFound}
         docs={this.state.docs}
-        isLoaded={this.state.isLoaded} />
+        isLoaded={this.state.isLoaded}
+        appData={this.props.appData} />
       <style jsx>{`
         #container {
           display: grid;
