@@ -36,7 +36,7 @@ export default class Search extends React.Component {
   getResults() {
     // TODO: Factor this out and make it better at producing valid queries
     let url = process.env.api_base + 'query/solr/?q=';
-    
+
     if (this.state.params.query) {
       url += this.state.params.query;
     }
@@ -54,14 +54,14 @@ export default class Search extends React.Component {
       url += '+AND+datasource:("' + this.state.params.datasource.join('" OR "') + '")';
     }
 
-    
     url += '+AND+formatType:METADATA';
     url += '&rows=' + this.state.params.n || 25;
     url += "&fl=id,title,origin,pubDate,datasource,resourceMap";
     url += '&sort=dateUploaded+desc';
     url += '&wt=json';
 
-    console.log(url)
+    console.log(url);
+
     fetch(url)
       .then(req => {
         return req.json();
@@ -85,9 +85,9 @@ export default class Search extends React.Component {
 
   render () {
     return (<div id="container">
-      <Controls 
-        params={this.state.params} 
-        changeQueryParams={this.changeQueryParams} 
+      <Controls
+        params={this.state.params}
+        changeQueryParams={this.changeQueryParams}
         appData={this.props.appData} />
       <SearchResults
         numFound={this.state.numFound}

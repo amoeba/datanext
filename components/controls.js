@@ -9,11 +9,11 @@ export default class Controls extends React.Component {
   return (
     <div id="controls">
       <label htmlFor="filterQueryTitle">Title</label>
-      <input 
-        id="filterQueryTitle" 
-        type="text" 
-        defaultValue={this.props.params.queryTitle} 
-        onChange={e => { 
+      <input
+        id="filterQueryTitle"
+        type="text"
+        defaultValue={this.props.params.queryTitle}
+        onChange={e => {
           this.props.changeQueryParams("queryTitle", e.target.value);
         }
       } />
@@ -22,16 +22,17 @@ export default class Controls extends React.Component {
       <input id="filterQuery"
         type="text"
         defaultValue={this.props.params.query}
-        onChange={e => { 
+        onChange={e => {
           this.props.changeQueryParams("query", e.target.value);
         }
       } />
 
       <label htmlFor="filterN">Num. Results</label>
       <select
-        id="filterN" 
+        id="filterN"
         defaultValue={this.props.params.n}
-        onChange={e => { 
+        onChange={e => {
+          console.log(e);
         this.props.changeQueryParams("n", e.target.value);
       }}>
         <option value="25">25</option>
@@ -69,7 +70,7 @@ export default class Controls extends React.Component {
           width: 100%;
         }
 
-        input, 
+        input,
         select {
           font-size: 100%;
         }
