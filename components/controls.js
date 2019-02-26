@@ -41,13 +41,22 @@ export default class Controls extends React.Component {
 
       <label htmlFor="filterNode">Node</label>
       <select
-        id="filterNode" 
-        defaultValue={this.props.params.datasource}
-        onChange={e => { 
-          this.props.changeQueryParams("datasource", e.target.value);
+        multiple={true}
+        size="10"
+        id="filterNode"
+        onChange={e => {
+          let values = [];
+
+          _.forEach(e.target.options, o => {
+            if (o.selected) {
+              values.push(o.value);
+            }
+          });
+
+          this.props.changeQueryParams("datasource", values);
         }}>
-          <option value="">All Nodes</option>
-          { nodes}
+          <option>All Nodes</option>
+          { nodes }
       </select>
       <style jsx>{`
         label {
