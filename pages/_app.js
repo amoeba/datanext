@@ -31,7 +31,7 @@ async function fetchAppData() {
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    
+
     let pageProps = {}
 
     let appData = clientStore ? clientStore.appData : await fetchAppData()
@@ -40,7 +40,7 @@ class MyApp extends App {
       pageProps = await Component.getInitialProps(ctx)
     }
 
-    return { appData, pageProps}
+    return { appData, pageProps }
   }
 
   constructor (props) {

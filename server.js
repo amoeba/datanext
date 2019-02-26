@@ -1,5 +1,5 @@
 /*
-* Adapted from 
+* Adapted from
 * https://github.com/zeit/next.js/blob/master/examples/custom-server/server.js
 */
 
