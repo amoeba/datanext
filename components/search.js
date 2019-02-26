@@ -17,23 +17,19 @@ export default class Search extends React.Component {
         n: 25,
         datasource: null
       },
-      docs: [],
-      numFound: 0,
-      isLoaded: false
+      docs: this.props.docs || [],
+      numFound: this.props.numFound || 0,
+      isLoaded: this.props.docs || false
     };
-  }
-
-  componentDidMount() {
-    this.getResults()
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (!_.isEqual(prevState.params, this.state.params)) {
-      this.getResults();
+      this.updateResults();
     }
   }
 
-  getResults() {
+  async getResults() {
     // TODO: Factor this out and make it better at producing valid queries
     let url = process.env.api_base + 'query/solr/?q=';
 
@@ -60,20 +56,20 @@ export default class Search extends React.Component {
     url += '&sort=dateUploaded+desc';
     url += '&wt=json';
 
-    console.log(url);
+    const req  = await fetch(url);
+    const json = await req.json();
 
-    fetch(url)
-      .then(req => {
-        return req.json();
-      })
-      .then(data => {
-        this.setState({
-          docs: (data && data.response && data.response.docs) ? data.response.docs : [],
-          numFound: (data && data.response) ? data.response.numFound || 0 : 0,
-          isLoaded: true
-        });
-      })
-      .catch(e => console.log(e)); // TODO: Handle this
+    return json;
+  }
+
+  async updateResults () {
+    const data = await this.getResults();
+
+    this.setState({
+      docs: (data && data.response && data.response.docs) ? data.response.docs : [],
+      numFound: (data && data.response) ? data.response.numFound || 0 : 0,
+      isLoaded: true
+    });
   }
 
   changeQueryParams = _.debounce((what, value) => {
