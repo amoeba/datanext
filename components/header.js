@@ -9,7 +9,7 @@ export default class Header extends React.Component {
           <a>📈</a>
         </Link>
         <Link href="/">
-          <a>Home</a>
+          <a>Search</a>
         </Link>
         <Link href="/about">
           <a>About</a>
