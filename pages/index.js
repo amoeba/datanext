@@ -26,6 +26,14 @@ export default class extends React.Component {
     const json = await request.json();
 
     // TODO: Return safe response on failure
+    // TODO: Bubble user-facing errors out
+    if (!json.response || !json.response.docs) {
+      return {
+        docs: [],
+        numFound: 0
+      };
+    }
+
     return {
       docs: json.response.docs,
       numFound: json.response.numFound
