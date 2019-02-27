@@ -7,39 +7,6 @@ import Search from "../components/search";
 import "../style.scss"
 
 export default class extends React.Component {
-  static async getInitialProps({ query }) {
-    console.log(query, typeof query, Object.keys(query), query.query);
-    
-    let url = process.env.api_base + 'query/solr/?q=';
-
-    // TODO: Extract into submodule
-    url += query.query || '*';
-    url += query.title ? '+AND+title:' + query.title : '';
-    url += query.datasource ? '+AND+datasource("' + query.datasource.join('" OR "') + '")' : ''; // TODO: Needs its own submodule, incld urlencoding
-    url += '+AND+formatType:METADATA';
-    url += '&rows=' + (query.rows || 25);
-    url += "&fl=id,title,origin,pubDate,datasource,resourceMap";
-    url += '&sort=dateUploaded+desc';
-    url += '&wt=json';
-
-    const request  = await fetch(url);
-    const json = await request.json();
-
-    // TODO: Return safe response on failure
-    // TODO: Bubble user-facing errors out
-    if (!json.response || !json.response.docs) {
-      return {
-        docs: [],
-        numFound: 0
-      };
-    }
-
-    return {
-      docs: json.response.docs,
-      numFound: json.response.numFound
-    }
-  }
-
   render() {
     return (
       <div>
@@ -48,9 +15,7 @@ export default class extends React.Component {
         </CustomHead>
         <Header />
         <Search
-          appData={this.props.appData}
-          docs={this.props.docs}
-          numFound={this.props.numFound} />
+          appData={this.props.appData} />
       </div>
     );
   }

@@ -22,6 +22,10 @@ export default class Search extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.updateResults();
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (!_.isEqual(prevState.params, this.state.params)) {
       this.updateResults();
