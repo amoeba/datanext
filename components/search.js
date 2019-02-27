@@ -76,7 +76,7 @@ export default class Search extends React.Component {
     nextParams[what] = value;
 
     // TODO: Factor out into a submodule
-    Router.push('/?query=' + nextParams.query + '&title=' + nextParams.queryTitle + '&rows=' + nextParams.n + '&node=' + nextParams.datasource.join(','));
+    Router.push('/?query=' + nextParams.query + '&title=' + nextParams.queryTitle + '&rows=' + nextParams.n + '&node=' + Array(nextParams.datasource).join(','));
 
     this.setState({params: nextParams});
   }, process.env.debounce);

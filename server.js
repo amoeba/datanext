@@ -1,23 +1,42 @@
-/*
-* Adapted from
-* https://github.com/zeit/next.js/blob/master/examples/custom-server/server.js
-*/
-
-const { createServer } = require('http')
-const { parse } = require('url')
+const express = require('express')
 const next = require('next')
 
-const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url, true)
-    handle(req, res, parsedUrl)
-  }).listen(port, err => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
+app.prepare()
+.then(() => {
+  const server = express()
+
+  server.get('/search', (req, res) => {
+    app.render(req, res, '/package', req.params);
   })
+
+  server.get('/package/:package/:metadata', (req, res) => {
+    app.render(req, res, '/package', {
+      package: req.params.package,
+      metadata: req.params.metadata
+    })
+  })
+
+  server.get('/object/:object', (req, res) => {
+    console.log('/object', req.params)
+    app.render(req, res, '/object', {
+      object: req.params.object
+    })
+  })
+
+  server.get('*', (req, res) => {
+    return handle(req, res)
+  })
+
+  server.listen(3000, (err) => {
+    if (err) throw err
+    console.log('> Ready on http://localhost:3000')
+  })
+})
+.catch((ex) => {
+  console.error(ex.stack)
+  process.exit(1)
 })

@@ -15,7 +15,7 @@ export default class SearchResult extends React.Component {
           <abbr title="Data Package">📦</abbr>
         <Link
           href={'/package?package=' + urlencode(m) + '&metadata=' + urlencode(metadata)}
-          as={'/package/' + urlencode(m)}
+          as={'/package/' + urlencode(m) + '/' + urlencode(metadata)}
         >
           <a>
             <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
