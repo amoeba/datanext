@@ -1,8 +1,7 @@
 import React from "react";
+import Router from 'next/router'
 import _ from "lodash"
 
-import Input from "./Input";
-import Select from "./Select";
 import Controls from "./controls";
 import SearchResults from "../components/searchResults";
 
@@ -75,6 +74,9 @@ export default class Search extends React.Component {
   changeQueryParams = _.debounce((what, value) => {
     const nextParams = { ...this.state.params };
     nextParams[what] = value;
+
+    // TODO: Factor out into a submodule
+    Router.push('/?query=' + nextParams.query + '&title=' + nextParams.queryTitle + '&rows=' + nextParams.n + '&node=' + nextParams.datasource.join(','));
 
     this.setState({params: nextParams});
   }, process.env.debounce);
