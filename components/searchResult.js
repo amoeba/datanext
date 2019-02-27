@@ -38,7 +38,7 @@ export default class SearchResult extends React.Component {
       items = (<li className="search_result">
         <abbr title="Metadata Only">📀</abbr>
         <Link
-          href={"/object?id=" + urlencode(metadata)}
+          href={"/object?object=" + urlencode(metadata)}
           as={"/object/" + urlencode(metadata)}
         >
           <a>
