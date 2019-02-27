@@ -21,7 +21,6 @@ app.prepare()
   })
 
   server.get('/object/:object', (req, res) => {
-    console.log('/object', req.params)
     app.render(req, res, '/object', {
       object: req.params.object
     })
