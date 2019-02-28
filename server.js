@@ -1,41 +1,35 @@
 const express = require('express')
 const next = require('next')
 
+const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-app.prepare()
-.then(() => {
+app.prepare().then(() => {
   const server = express()
 
-  server.get('/search', (req, res) => {
-    app.render(req, res, '/package', req.params);
-  })
-
-  server.get('/package/:package/:metadata', (req, res) => {
-    app.render(req, res, '/package', {
-      package: req.params.package,
-      metadata: req.params.metadata
-    })
+  server.get('/', (req, res) => {
+    return app.render(req, res, '/', req.query)
   })
 
   server.get('/object/:object', (req, res) => {
-    app.render(req, res, '/object', {
-      object: req.params.object
-    })
+    return app.render(req, res, '/object', { object: req.params.object })
+  })
+
+  server.get('/package/:package/:metadata', (req, res) => {
+    return app.render(req, res, '/package', {
+      package: req.params.package,
+      metadata: req.params.metadata
+     })
   })
 
   server.get('*', (req, res) => {
     return handle(req, res)
   })
 
-  server.listen(3000, (err) => {
+  server.listen(port, err => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on http://localhost:${port}`)
   })
-})
-.catch((ex) => {
-  console.error(ex.stack)
-  process.exit(1)
 })
