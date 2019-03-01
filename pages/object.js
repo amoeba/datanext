@@ -5,6 +5,8 @@ import CustomHead from '../components/custom_head';
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 
+import "../style.scss"
+
 export default withRouter(class extends React.Component {
   static getInitialProps ({ query: { object } }) {
     return { object: object }

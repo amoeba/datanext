@@ -7,6 +7,8 @@ import Header from "../components/header";
 import Metadata from "../components/metadata";
 import PackageTable from "../components/package_table";
 
+import "../style.scss"
+
 export default withRouter(class extends React.Component {
   static getInitialProps ({ query }) {
     return {
