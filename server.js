@@ -14,7 +14,9 @@ app.prepare().then(() => {
   })
 
   server.get('/object/:object', (req, res) => {
-    return app.render(req, res, '/object', { object: req.params.object })
+    return app.render(req, res, '/object', {
+      object: req.params.object
+    })
   })
 
   server.get('/package/:package/:metadata', (req, res) => {
