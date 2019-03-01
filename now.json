@@ -1,6 +1,11 @@
 {
   "version": 2,
+  "name": "datanext",
   "builds": [
     { "src": "package.json", "use": "@now/next" }
+  ],
+  "routes": [
+    { "src": "/object/(?<object>[^/]+)$", "dest": "/object?object=$object" },
+    { "src": "/package/(?<name>[^/]+)/(?<metadata>[^/]+)$", "dest": "/package?package=$package&metadata=$metadata" }
   ]
 }
