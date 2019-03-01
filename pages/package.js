@@ -8,17 +8,22 @@ import Metadata from "../components/metadata";
 import PackageTable from "../components/package_table";
 
 export default withRouter(class extends React.Component {
-  render() {
-    const {query} = this.props.router;
+  static getInitialProps ({ query }) {
+    return {
+      package: urlencode.decode(query.package),
+      metadata: urlencode.decode(query.metadata)
+    }
+  }
 
+  render() {
     return (
       <div>
         <CustomHead>
           <title>Package</title>
         </CustomHead>
         <Header />
-        <PackageTable id={urlencode.decode(query.package)} />
-        <Metadata id={urlencode.decode(query.metadata)} />
+        <PackageTable id={this.props.package} />
+        <Metadata id={this.props.metadata} />
       </div>
     );
   }

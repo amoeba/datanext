@@ -6,16 +6,18 @@ import Header from "../components/header";
 import Metadata from "../components/metadata";
 
 export default withRouter(class extends React.Component {
-  render() {
-    const {query} = this.props.router;
+  static getInitialProps ({ query: { object } }) {
+    return { object: object }
+  }
 
+  render() {
     return (
       <div>
         <CustomHead>
           <title>Object</title>
         </CustomHead>
         <Header />
-        <Metadata id={query.object} />
+        <Metadata id={this.props.object} />
       </div>
     );
   }
