@@ -82,7 +82,10 @@ export default class Search extends React.Component {
     // TODO: Factor out into a submodule
     Router.push('/?query=' + nextParams.query + '&title=' + nextParams.queryTitle + '&rows=' + nextParams.n + '&node=' + Array(nextParams.datasource).join(','));
 
-    this.setState({params: nextParams});
+    this.setState({
+      params: nextParams,
+      isLoaded: false
+    });
   }, process.env.debounce);
 
   render () {
@@ -92,6 +95,7 @@ export default class Search extends React.Component {
         changeQueryParams={this.changeQueryParams}
         appData={this.props.appData} />
       <SearchResults
+        n={this.state.params.n}
         numFound={this.state.numFound}
         docs={this.state.docs}
         isLoaded={this.state.isLoaded}
