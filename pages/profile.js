@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "../components/header";
-import TokenConext from "../shared/TokenContext";
+import TokenConext from "../shared/token-context";
 import TokenButton from "../components/TokenButton";
 
 import "../style.scss"
