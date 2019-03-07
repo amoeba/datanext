@@ -7,7 +7,7 @@ import Metadata from "../components/metadata";
 
 import "../style.scss"
 
-export default withRouter(class extends React.Component {
+export default class extends React.Component {
   static getInitialProps ({ query: { object } }) {
     return { object: object }
   }
@@ -23,4 +23,4 @@ export default withRouter(class extends React.Component {
       </div>
     );
   }
-});
+};

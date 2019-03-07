@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from 'next/router';
 import urlencode from "urlencode";
 
 import CustomHead from '../components/custom_head';
@@ -9,7 +8,7 @@ import PackageTable from "../components/package_table";
 
 import "../style.scss"
 
-export default withRouter(class extends React.Component {
+export default class extends React.Component {
   static getInitialProps ({ query }) {
     return {
       package: urlencode.decode(query.package),
@@ -29,4 +28,4 @@ export default withRouter(class extends React.Component {
       </div>
     );
   }
-});
+};
