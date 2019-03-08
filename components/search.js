@@ -4,8 +4,11 @@ import _ from "lodash"
 
 import Controls from "./controls";
 import SearchResults from "../components/searchResults";
+import TokenConext from "../shared/token-context";
 
 export default class Search extends React.Component {
+  static contextType = TokenConext;
+
   constructor(props) {
     super(props);
 
@@ -53,13 +56,19 @@ export default class Search extends React.Component {
       url += '+AND+datasource:("' + this.state.params.datasource.join('" OR "') + '")';
     }
 
-    url += '+AND+formatType:METADATA';
+    url += '+AND+formatType:METADATA+AND+isPublic:false';
     url += '&rows=' + this.state.params.n || 25;
-    url += "&fl=id,title,origin,pubDate,datasource,resourceMap";
+    url += "&fl=id,title,origin,pubDate,datasource,resourceMap,isPublic";
     url += '&sort=dateUploaded+desc';
     url += '&wt=json';
 
-    const req  = await fetch(url);
+    const options = this.context.token ? { 
+      'headers' : { 
+        'Authorization' : 'Bearer ' + this.context.token 
+      }
+    } : null;
+
+    const req  = await fetch(url, options);
     const json = await req.json();
 
     return json;

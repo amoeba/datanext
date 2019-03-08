@@ -21,6 +21,7 @@ export default class SearchResult extends React.Component {
             <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
           </a>
         </Link>
+        {this.props.doc.isPublic ? '🌍' : '🔐'}
         <style jsx>{`
           li {
             margin: 0 0 0.5rem 0;
@@ -45,6 +46,7 @@ export default class SearchResult extends React.Component {
           <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
           </a>
         </Link>
+        {this.props.doc.isPublic ? '🌍' : '🔐'}
         <style jsx>{`
           li {
             margin: 0 0 0.5rem 0;
