@@ -56,7 +56,7 @@ export default class Search extends React.Component {
       url += '+AND+datasource:("' + this.state.params.datasource.join('" OR "') + '")';
     }
 
-    url += '+AND+formatType:METADATA+AND+isPublic:false';
+    url += '+AND+formatType:METADATA';
     url += '&rows=' + this.state.params.n || 25;
     url += "&fl=id,title,origin,pubDate,datasource,resourceMap,isPublic";
     url += '&sort=dateUploaded+desc';
