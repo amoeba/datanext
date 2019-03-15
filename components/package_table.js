@@ -14,7 +14,7 @@ export default class PackageTable extends React.Component {
     const url = process.env.api_base + 
       'query/solr/?q=resourceMap:"' + 
       this.props.id + 
-      '"&rows=1&fl=id,fileName,formatType,formatId,size&wt=json';
+      '"&rows=1000&fl=id,fileName,formatType,formatId,size&wt=json';
 
     fetch(url)
       .then(req => {
