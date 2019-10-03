@@ -6,7 +6,7 @@ import Header from "../components/header";
 import Metadata from "../components/metadata";
 import PackageTable from "../components/package_table";
 
-import "../style.scss"
+import "../style.css"
 
 export default class extends React.Component {
   static getInitialProps ({ query }) {

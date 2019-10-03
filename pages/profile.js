@@ -4,7 +4,7 @@ import Header from "../components/header";
 import TokenConext from "../shared/token-context";
 import TokenButton from "../components/TokenButton";
 
-import "../style.scss"
+import "../style.css"
 
 export default class extends React.Component {
   static contextType = TokenConext;
@@ -20,7 +20,7 @@ export default class extends React.Component {
   componentDidMount () {
     // TODO: Factor out into config
     this.setState({
-      loginURL: 'https://cn.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
+      loginURL: 'https://search.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
     })
   }
 

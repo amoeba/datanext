@@ -4,8 +4,7 @@ body {
 }
 
 /* Bootstrap garbage */
-#metadata {
-  .control-label {
+.control-label {
     float: left;
     width: 160px;
     padding-top: 5px;
@@ -208,4 +207,3 @@ body {
   table .table {
     background-color: #ffffff;
   }
-}

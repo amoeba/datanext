@@ -51,17 +51,17 @@ class MyApp extends App {
     if (clientStore && !clientStore.appData) {
 			clientStore.appData = props.appData
     }
-    
+
     this.updateToken = () => {
       // TODO: Factor out into config
-      fetch('https://cn.dataone.org/portal/token', { credentials: 'include'})
+      fetch('https://search.dataone.org/portal/token', { credentials: 'include'})
       .then(resp => {
         return resp.text();
       })
       .then(token => {
         this.setState(() => ({
           token: token
-        }));      
+        }));
       })
     };
 

@@ -5,7 +5,7 @@ import CustomHead from '../components/custom_head';
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 
-import "../style.scss"
+import "../style.css"
 
 export default class extends React.Component {
   static getInitialProps ({ query: { object } }) {
