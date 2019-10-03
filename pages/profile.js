@@ -20,7 +20,7 @@ export default class extends React.Component {
   componentDidMount () {
     // TODO: Factor out into config
     this.setState({
-      loginURL: 'https://search.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
+      loginURL: 'https://cn.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
     })
   }
 

@@ -12,7 +12,7 @@ export default class Header extends React.Component {
 
   componentDidMount () {
     this.setState({
-      loginURL: 'https://search.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
+      loginURL: 'https://cn.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
     })
   }
 

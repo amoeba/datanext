@@ -54,7 +54,7 @@ class MyApp extends App {
 
     this.updateToken = () => {
       // TODO: Factor out into config
-      fetch('https://search.dataone.org/portal/token', { credentials: 'include'})
+      fetch('https://cn.dataone.org/portal/token', { credentials: 'include'})
       .then(resp => {
         return resp.text();
       })
