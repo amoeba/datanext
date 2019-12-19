@@ -6,12 +6,12 @@
     "use": "@now/next"
   }],
   "routes": [{
-      "src": "/object/(?<object>.+)$",
-      "dest": "/object?object=$object"
+      "src": "/object/(.+)",
+      "dest": "/object?object=$1"
     },
     {
-      "src": "/package/(?<package>[^/]+)/(?<metadata>[^/]+)$",
-      "dest": "/package?package=$package&metadata=$metadata"
+      "src": "/package/([^\/]+)/([^\/]+)",
+      "dest": "/package?package=$1&metadata=$2"
     }
   ]
 }
