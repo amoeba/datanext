@@ -1,37 +1,26 @@
 import useSWR from 'swr'
-import fetch from 'unfetch'
+import Header from '../components/Header.js'
+import SearchResults from '../components/SearchResults.js'
 
-import SearchResult from '../components/SearchResult.js'
-
-const key = '*:*';
-
-const fetcher = async (path) => {
-  const url = 'https://search.dataone.org/cn/v2/query/solr/?q=' +
-    path +
-    '+AND+formatType:METADATA+AND+-obsoletedBy:*' +
-    '&sort=dateUploaded+desc' +
-    '&fl=identifier,dateUploaded' +
-    '&wt=json';
-
-  return fetch(url).then(r => r.json());
-}
-
-Index.getInitialProps = async () => {
-  const data = await fetcher(key);
-
-  return { data };
-}
+import SearchFetcher from '../lib/SearchFetcher.js'
 
 function Index() {
-  const initialData = props.data;
-  const { data, error } = useSWR(key, fetcher, { initialData })
+  const { data, error } = useSWR('*', SearchFetcher)
 
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  // This pattern sucks...
+  let content
 
-  return (<ul>
-    { data.response.docs.map(d => SearchResult(d)) }
-  </ul>)
+  if (error) {
+    content = <div>Failed to load</div>
+  } else if (!data) {
+    content = <div>Loading...</div>
+  } else {
+    content = <SearchResults data={data} />
+  }
+  return <div>
+    <Header />
+    {content}
+  </div>
 }
 
 export default Index
