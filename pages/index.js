@@ -1,10 +1,9 @@
 import useSWR from 'swr'
-import Header from '../components/Header.js'
+import Layout from '../components/Layout.js'
 import SearchResults from '../components/SearchResults.js'
-
 import SearchFetcher from '../lib/SearchFetcher.js'
 
-function Index() {
+const Index = () => {
   const { data, error } = useSWR('*', SearchFetcher)
 
   // This pattern sucks...
@@ -17,10 +16,9 @@ function Index() {
   } else {
     content = <SearchResults data={data} />
   }
-  return <div>
-    <Header />
+  return <Layout>
     {content}
-  </div>
+  </Layout>
 }
 
 export default Index

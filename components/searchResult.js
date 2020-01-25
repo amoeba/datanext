@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-function SearchResult (document) {
+const SearchResult  = (document) => {
   const url = '/view?id=' + encodeURIComponent(document.identifier)
 
   return <li key={document.identifier}>
