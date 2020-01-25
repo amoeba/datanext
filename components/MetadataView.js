@@ -1,10 +1,8 @@
 const MetadataView = props => {
   return (
     <div>
-      <div>
-        <strong>Title:</strong> {props.doc.title}
-      </div>
-      <p>{props.doc.abstract || "No abstract"}</p>
+      <h2>{props.doc.title}</h2>
+      <p>Abstract: {props.doc.abstract || "No abstract"}</p>
     </div>
   );
 };

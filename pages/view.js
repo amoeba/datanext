@@ -20,12 +20,7 @@ const Package = props => {
     content = <MetadataView doc={data.response.docs[0]} />;
   }
 
-  return (
-    <Layout>
-      <h2>{id}</h2>
-      {content}
-    </Layout>
-  );
+  return <Layout>{content}</Layout>;
 };
 
 export default withRouter(Package);
