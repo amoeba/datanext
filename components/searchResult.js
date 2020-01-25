@@ -1,15 +1,15 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-const SearchResult  = (document) => {
-  const url = '/view?id=' + encodeURIComponent(document.identifier)
+const SearchResult = document => {
+  const url = "/view?id=" + encodeURIComponent(document.identifier);
 
-  return <li key={document.identifier}>
+  return (
+    <li key={document.identifier}>
       <Link href={url}>
-        <a>
-          {document.identifier}
-        </a>
+        <a>{document.identifier}</a>
       </Link>
-  </li>
-}
+    </li>
+  );
+};
 
-export default SearchResult
+export default SearchResult;

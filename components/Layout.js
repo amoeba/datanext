@@ -1,17 +1,17 @@
-import Header from '../components/Header.js'
+import Header from "../components/Header.js";
 
-const Layout = (props) => {
+const Layout = props => {
   return (
     <div id="app">
       <Header />
-      { props.children }
+      {props.children}
       <style jsx>{`
         #app {
           font: 16px sans-serif;
         }
       `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
