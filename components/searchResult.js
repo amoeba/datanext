@@ -7,7 +7,8 @@ const SearchResult = document => {
     <li key={document.identifier}>
       <Link href={url}>
         <a>
-          {document.origin.join(", ")}. <strong>{document.title}</strong>.{" "}
+          {document.origin.join(", ")}.{" "}
+          <span className="title">{document.title}</span>.&nbsp;
           {document.pubDate}. {document.datasource}.{" "}
           <span className="identifier">{document.identifier}</span>.
         </a>
@@ -15,21 +16,23 @@ const SearchResult = document => {
       <style jsx>{`
         li {
           line-height: 1.25rem;
+          margin: 0.25rem 0;
         }
 
         a {
           text-decoration: none;
         }
 
-        .identifier {
-          border: 1px solid #ccc;
-          background-color: rgba(230, 230, 230, 0.25);
-          border-radius: 3px;
-          padding: 0 3px;
+        .title {
+          font-weight: bold;
         }
 
-        .identifier:hover {
-          background-color: rgba(210, 210, 210, 0.5);
+        .title:hover {
+          text-decoration: underline;
+        }
+
+        .identifier {
+          color: gray;
         }
       `}</style>
     </li>
