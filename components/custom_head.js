@@ -6,7 +6,11 @@ export default class CustomHead extends React.Component {
     return (
       <Head>
         {this.props.children}
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" key="viewport" />
+        <meta
+          name="viewport"
+          content="initial-scale=1.0, width=device-width"
+          key="viewport"
+        />
         <link rel="preconnect" href="https://search.dataone.org" />
         <link rel="preconnect" href="https://cn.dataone.org" />
       </Head>

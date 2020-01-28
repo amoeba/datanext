@@ -11,57 +11,72 @@ export default class SearchResult extends React.Component {
 
     if (this.props.doc.resourceMap && this.props.doc.resourceMap.length > 0) {
       items = this.props.doc.resourceMap.map(m => {
-        return (<li className="search_result" key={m}>
-          <abbr title="Data Package">📦</abbr>
-        <Link
-          href={'/package?package=' + urlencode(m) + '&metadata=' + urlencode(metadata)}
-          as={'/package/' + urlencode(m) + '/' + urlencode(metadata)}
-        >
-          <a>
-            <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
-          </a>
-        </Link>
-        {this.props.doc.isPublic ? '🌍' : '🔐'}
-        <style jsx>{`
-          li {
-            margin: 0 0 0.5rem 0;
-            line-height: 1.5rem;
-          }
+        return (
+          <li className="search_result" key={m}>
+            <abbr title="Data Package">📦</abbr>
+            <Link
+              href={
+                "/package?package=" +
+                urlencode(m) +
+                "&metadata=" +
+                urlencode(metadata)
+              }
+              as={"/package/" + urlencode(m) + "/" + urlencode(metadata)}
+            >
+              <a>
+                <DataCitation
+                  pid={metadata}
+                  doc={this.props.doc}
+                  appData={this.props.appData}
+                />
+              </a>
+            </Link>
+            {this.props.doc.isPublic ? "🌍" : "🔐"}
+            <style jsx>{`
+              li {
+                margin: 0 0 0.5rem 0;
+                line-height: 1.5rem;
+              }
 
-          abbr {
-            text-decoration: none;
-            margin-right: 0.25rem;
-          }          
-        `}</style>
-        </li>);
+              abbr {
+                text-decoration: none;
+                margin-right: 0.25rem;
+              }
+            `}</style>
+          </li>
+        );
       });
     } else {
-      items = (<li className="search_result">
-        <abbr title="Metadata Only">📀</abbr>
-        <Link
-          href={"/object?object=" + urlencode(metadata)}
-          as={"/object/" + urlencode(metadata)}
-        >
-          <a>
-          <DataCitation pid={metadata} doc={this.props.doc} appData={this.props.appData} />
-          </a>
-        </Link>
-        {this.props.doc.isPublic ? '🌍' : '🔐'}
-        <style jsx>{`
-          li {
-            margin: 0 0 0.5rem 0;
-            line-height: 1.5rem;
-          }
+      items = (
+        <li className="search_result">
+          <abbr title="Metadata Only">📀</abbr>
+          <Link
+            href={"/object?object=" + urlencode(metadata)}
+            as={"/object/" + urlencode(metadata)}
+          >
+            <a>
+              <DataCitation
+                pid={metadata}
+                doc={this.props.doc}
+                appData={this.props.appData}
+              />
+            </a>
+          </Link>
+          {this.props.doc.isPublic ? "🌍" : "🔐"}
+          <style jsx>{`
+            li {
+              margin: 0 0 0.5rem 0;
+              line-height: 1.5rem;
+            }
 
-          abbr {
-            text-decoration: none;
-            margin-right: 0.25rem;
-          }          
-        `}</style>
-      </li>);
+            abbr {
+              text-decoration: none;
+              margin-right: 0.25rem;
+            }
+          `}</style>
+        </li>
+      );
     }
-    return (<div>
-      { items }
-    </div>);
+    return <div>{items}</div>;
   }
 }

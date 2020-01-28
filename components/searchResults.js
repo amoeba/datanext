@@ -6,12 +6,16 @@ export default class SearchResults extends React.Component {
     if (!this.props.isLoaded) {
       const loaders = [...Array(this.props.n)].map((x, i) => i);
 
-      return(
+      return (
         <div>
           <span>Loading at most {this.props.n} results. Hang on tight...</span>
           <ul>
             {loaders.map(i => {
-              return (<li className="loading" key={i}>&nbsp;</li>);
+              return (
+                <li className="loading" key={i}>
+                  &nbsp;
+                </li>
+              );
             })}
           </ul>
           <style jsx>{`
@@ -22,7 +26,7 @@ export default class SearchResults extends React.Component {
             }
 
             li {
-              background-color: #EEE;
+              background-color: #eee;
               height: 1.5rem;
               margin: 0.25rem;
             }
@@ -32,14 +36,14 @@ export default class SearchResults extends React.Component {
     } else {
       return (
         <div>
-          <span>{this.props.numFound} result(s) found. Showing {this.props.docs.length}.</span>
+          <span>
+            {this.props.numFound} result(s) found. Showing{" "}
+            {this.props.docs.length}.
+          </span>
           <ul>
             {this.props.docs.map((doc, i) => {
               return (
-                <SearchResult
-                  key={i}
-                  doc={doc}
-                  appData={this.props.appData} />
+                <SearchResult key={i} doc={doc} appData={this.props.appData} />
               );
             })}
           </ul>

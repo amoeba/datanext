@@ -3,7 +3,11 @@ import React from "react";
 export default class Controls extends React.Component {
   render() {
     const nodes = this.props.appData.nodes.map(n => {
-      return (<option key={n.id} value={n.id}>{n.name}</option>);
+      return (
+        <option key={n.id} value={n.id}>
+          {n.name}
+        </option>
+      );
     });
 
     return (
@@ -15,17 +19,18 @@ export default class Controls extends React.Component {
           defaultValue={this.props.params.queryTitle}
           onChange={e => {
             this.props.changeQueryParams("queryTitle", e.target.value);
-          }
-        } />
+          }}
+        />
 
         <label htmlFor="filterQuery">Full Text</label>
-        <input id="filterQuery"
+        <input
+          id="filterQuery"
           type="text"
           defaultValue={this.props.params.query}
           onChange={e => {
             this.props.changeQueryParams("query", e.target.value);
-          }
-        } />
+          }}
+        />
 
         <label htmlFor="filterN">Num. Results</label>
         <select
@@ -33,8 +38,9 @@ export default class Controls extends React.Component {
           defaultValue={this.props.params.n}
           onChange={e => {
             console.log(e);
-          this.props.changeQueryParams("n", e.target.value);
-        }}>
+            this.props.changeQueryParams("n", e.target.value);
+          }}
+        >
           <option value="25">25</option>
           <option value="50">50</option>
           <option value="100">100</option>
@@ -55,9 +61,10 @@ export default class Controls extends React.Component {
             });
 
             this.props.changeQueryParams("datasource", values);
-          }}>
-            <option>All Nodes</option>
-            { nodes }
+          }}
+        >
+          <option>All Nodes</option>
+          {nodes}
         </select>
         <style jsx>{`
           label {

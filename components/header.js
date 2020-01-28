@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 export default class Header extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -10,10 +10,12 @@ export default class Header extends React.Component {
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
-      loginURL: 'https://cn.dataone.org/portal/oauth?action=start&target=' + encodeURIComponent(window.location.href)
-    })
+      loginURL:
+        "https://cn.dataone.org/portal/oauth?action=start&target=" +
+        encodeURIComponent(window.location.href)
+    });
   }
 
   render() {

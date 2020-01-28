@@ -2,15 +2,17 @@ import React from "react";
 
 export default class Input extends React.Component {
   render() {
-    const {what, handler, label, after, ...rest} = this.props;
+    const { what, handler, label, after, ...rest } = this.props;
 
     return (
       <div>
         <label>{label}</label>
-        <input {...rest}
-          onChange={(e)=>{
+        <input
+          {...rest}
+          onChange={e => {
             handler(what, e.target.value);
-        }} />
+          }}
+        />
         {after}
         <style jsx>{`
           div {
@@ -22,7 +24,7 @@ export default class Input extends React.Component {
             width: 100%;
           }
 
-          input[type=text] {
+          input[type="text"] {
             border: 1px solid #888;
             box-sizing: border-box;
             padding: 0.25rem;

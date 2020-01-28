@@ -1,11 +1,15 @@
-import TokenContext from '../shared/token-context';
+import TokenContext from "../shared/token-context";
 
 function TokenButton() {
   return (
     <TokenContext.Consumer>
-      {({updateToken}) => (
+      {({ updateToken }) => (
         <button
-          onClick={() => { console.log('updateToken'); updateToken('asdf')}}>
+          onClick={() => {
+            console.log("updateToken");
+            updateToken("asdf");
+          }}
+        >
           Refresh Token
         </button>
       )}

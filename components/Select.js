@@ -2,15 +2,17 @@ import React from "react";
 
 export default class Select extends React.Component {
   render() {
-    const {what, handler, label, after, children, ...rest} = this.props;
+    const { what, handler, label, after, children, ...rest } = this.props;
 
     return (
       <div>
         <label>{label}</label>
-        <select {...rest}
-          onChange={(e)=>{
+        <select
+          {...rest}
+          onChange={e => {
             handler(what, e.target.value);
-        }}>
+          }}
+        >
           {children}
         </select>
         {after}
