@@ -16,6 +16,7 @@
     "xmldom": "^0.2.1"
   },
   "devDependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "prettier": "^1.19.1"
   }
 }
