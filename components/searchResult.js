@@ -6,10 +6,14 @@ const SearchResult = document => {
   return (
     <li key={document.identifier}>
       <Link href={url}>
+        {/* TODO: Fix this... */}
         <a>
-          {document.origin.join(", ")}.{" "}
-          <span className="title">{document.title}</span>.&nbsp;
-          {document.pubDate}. {document.datasource}.{" "}
+          {document.origin ? document.origin.join(", ") + ". " : ""}{" "}
+          <span className="title">
+            {document.title ? document.title + ". " : ""}
+          </span>
+          {document.pubDate ? document.pubDate + ". " : ""}{" "}
+          {document.datasource}.{" "}
           <span className="identifier">{document.identifier}</span>.
         </a>
       </Link>
