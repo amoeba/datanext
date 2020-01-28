@@ -12,8 +12,8 @@ Index.getInitialProps = async () => {
 };
 
 function Index(props) {
-  const [query, setQuery] = useState("*");
   const initialData = props.data;
+  const [query, setQuery] = useState("*");
 
   const { data } = useSWR(query, SearchFetcher, {
     initialData
