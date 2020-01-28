@@ -1,8 +1,7 @@
 import React from "react";
 import urlencode from "urlencode";
-
+import Layout from "../components/Layout";
 import CustomHead from "../components/custom_head";
-import Header from "../components/header";
 import Metadata from "../components/metadata";
 import PackageTable from "../components/package_table";
 
@@ -16,14 +15,13 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <CustomHead>
           <title>Package</title>
         </CustomHead>
-        <Header />
         <PackageTable id={this.props.package} />
         <Metadata id={this.props.metadata} />
-      </div>
+      </Layout>
     );
   }
 }

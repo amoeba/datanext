@@ -1,6 +1,5 @@
 import React from "react";
-
-import Header from "../components/header";
+import Layout from "../components/Layout";
 import TokenConext from "../shared/token-context";
 import TokenButton from "../components/TokenButton";
 
@@ -26,8 +25,7 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
+      <Layout>
         <div>
           <h3>Profile</h3>
           <p>TODO</p>
@@ -44,7 +42,7 @@ export default class extends React.Component {
             word-break: break-all;
           }
         `}</style>
-      </div>
+      </Layout>
     );
   }
 }

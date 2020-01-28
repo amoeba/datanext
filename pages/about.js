@@ -1,12 +1,10 @@
 import React from "react";
-
-import Header from "../components/header";
+import Layout from "../components/Layout";
 
 export default class extends React.Component {
   render() {
     return (
-      <div>
-        <Header />
+      <Layout>
         <div>
           <p>
             This is just a simple demo of a DataONE search web client written in
@@ -17,7 +15,7 @@ export default class extends React.Component {
             for more info.
           </p>
         </div>
-      </div>
+      </Layout>
     );
   }
 }

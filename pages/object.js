@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "next/router";
 
+import Layout from "../components/Layout";
 import CustomHead from "../components/custom_head";
-import Header from "../components/header";
 import Metadata from "../components/metadata";
 
 export default class extends React.Component {
@@ -12,13 +12,12 @@ export default class extends React.Component {
 
   render() {
     return (
-      <div>
+      <Layout>
         <CustomHead>
           <title>Object</title>
         </CustomHead>
-        <Header />
         <Metadata id={this.props.object} />
-      </div>
+      </Layout>
     );
   }
 }
