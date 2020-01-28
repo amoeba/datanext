@@ -1,5 +1,5 @@
 module.exports = {
   env: {
-    api_base: "https://search-stage.test.dataone.org/cn/v2/"
+    api_base: "https://search.dataone.org/cn/v2/"
   }
 };
