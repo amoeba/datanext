@@ -5,30 +5,23 @@ import Filters from "../components/Filters.js";
 import SearchResults from "../components/SearchResults.js";
 import SearchFetcher from "../lib/SearchFetcher.js";
 
-const defaultSearch = "*";
-
 Index.getInitialProps = async () => {
-  const data = await SearchFetcher(defaultSearch);
+  const data = await SearchFetcher("*");
 
   return { data };
 };
 
 function Index(props) {
-  const [query, setQuery] = useState(defaultSearch);
+  const [query, setQuery] = useState("*");
   const initialData = props.data;
 
   const { data } = useSWR(query, SearchFetcher, {
     initialData
   });
 
-  function handleChange(event) {
-    console.log(event.target.value);
-    setQuery(event.target.value);
-  }
-
   return (
     <Layout>
-      <Filters handleChange={handleChange} />
+      <Filters handleChange={e => setQuery(e.target.value)} />
       <p>Current Search: {query}</p>
       <SearchResults data={data} />
     </Layout>

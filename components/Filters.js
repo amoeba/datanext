@@ -4,7 +4,7 @@ const Filters = props => {
       <input
         type="text"
         placeholder="Enter a search term..."
-        onBlur={props.handleChange}
+        onChange={props.handleChange}
       />
       <style jsx>{`
         input {
