@@ -1,19 +1,17 @@
 import React from "react";
 import urlencode from "urlencode";
 
-import CustomHead from '../components/custom_head';
+import CustomHead from "../components/custom_head";
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 import PackageTable from "../components/package_table";
 
-import "../style.css"
-
 export default class extends React.Component {
-  static getInitialProps ({ query }) {
+  static getInitialProps({ query }) {
     return {
       package: urlencode.decode(query.package),
       metadata: urlencode.decode(query.metadata)
-    }
+    };
   }
 
   render() {
@@ -28,4 +26,4 @@ export default class extends React.Component {
       </div>
     );
   }
-};
+}

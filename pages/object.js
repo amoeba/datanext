@@ -1,15 +1,13 @@
 import React from "react";
-import { withRouter } from 'next/router';
+import { withRouter } from "next/router";
 
-import CustomHead from '../components/custom_head';
+import CustomHead from "../components/custom_head";
 import Header from "../components/header";
 import Metadata from "../components/metadata";
 
-import "../style.css"
-
 export default class extends React.Component {
-  static getInitialProps ({ query: { object } }) {
-    return { object: object }
+  static getInitialProps({ query: { object } }) {
+    return { object: object };
   }
 
   render() {
@@ -23,4 +21,4 @@ export default class extends React.Component {
       </div>
     );
   }
-};
+}

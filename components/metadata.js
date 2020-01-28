@@ -13,17 +13,17 @@ export default class Metadata extends React.Component {
 
   componentDidMount() {
     const object_url =
-      process.env.api_base + 'views/metacatui/' + urlencode(this.props.id);
+      process.env.api_base + "views/metacatui/" + urlencode(this.props.id);
 
     fetch(object_url)
       .then(req => {
-        return req.text()
+        return req.text();
       })
       .then(data => {
         this.setState({
           isLoaded: true,
           html: data
-        })
+        });
       });
   }
 
@@ -33,7 +33,10 @@ export default class Metadata extends React.Component {
     }
 
     return (
-      <div id="metadata" dangerouslySetInnerHTML={{__html: this.state.html}}></div>
+      <div
+        id="metadata"
+        dangerouslySetInnerHTML={{ __html: this.state.html }}
+      ></div>
     );
   }
 }
