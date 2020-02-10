@@ -5,7 +5,7 @@ export default class Controls extends React.Component {
   render() {
     const nodes = nodeList.map(n => {
       return (
-        <option key={n.id} value={n.id}>
+        <option key={n.identifier} value={n.identifier}>
           {n.name}
         </option>
       );

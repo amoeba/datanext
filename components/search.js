@@ -53,10 +53,14 @@ export default class Search extends React.Component {
     }
 
     if (this.state.params.datasource) {
-      url +=
-        '+AND+datasource:("' +
-        this.state.params.datasource.join('" OR "') +
-        '")';
+      if (this.state.params.datasource.length == 1) {
+        url += '+AND+datasource:"' + this.state.params.datasource[0] + '"';
+      } else if (this.state.params.datasource.length > 1) {
+        url +=
+          '+AND+datasource:("' +
+          this.state.params.datasource.join('" OR "') +
+          '")';
+      }
     }
 
     url += "+AND+formatType:METADATA";
