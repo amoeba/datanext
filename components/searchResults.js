@@ -42,9 +42,7 @@ export default class SearchResults extends React.Component {
           </span>
           <ul>
             {this.props.docs.map((doc, i) => {
-              return (
-                <SearchResult key={i} doc={doc} appData={this.props.appData} />
-              );
+              return <SearchResult key={i} doc={doc} />;
             })}
           </ul>
           <style jsx>{`

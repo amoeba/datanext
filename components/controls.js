@@ -1,8 +1,9 @@
 import React from "react";
+import nodeList from "../shared/nodeList";
 
 export default class Controls extends React.Component {
   render() {
-    const nodes = this.props.appData.nodes.map(n => {
+    const nodes = nodeList.map(n => {
       return (
         <option key={n.id} value={n.id}>
           {n.name}

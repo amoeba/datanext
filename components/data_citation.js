@@ -1,12 +1,12 @@
 import React from "react";
+import nodeList from "../shared/nodeList";
 
 export default class Metadata extends React.Component {
   render() {
     // Try to find a better node name
-    const nodes = this.props.appData.nodes;
 
-    let betterNodeName = nodes.find(el => {
-      return el.id === this.props.doc.datasource;
+    let betterNodeName = nodeList.find(el => {
+      return el.identifier === this.props.doc.datasource;
     });
 
     const authors = this.props.doc.origin

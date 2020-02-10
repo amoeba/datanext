@@ -24,11 +24,7 @@ export default class SearchResult extends React.Component {
               as={"/package/" + urlencode(m) + "/" + urlencode(metadata)}
             >
               <a>
-                <DataCitation
-                  pid={metadata}
-                  doc={this.props.doc}
-                  appData={this.props.appData}
-                />
+                <DataCitation pid={metadata} doc={this.props.doc} />
               </a>
             </Link>
             {this.props.doc.isPublic ? "🌍" : "🔐"}
@@ -55,11 +51,7 @@ export default class SearchResult extends React.Component {
             as={"/object/" + urlencode(metadata)}
           >
             <a>
-              <DataCitation
-                pid={metadata}
-                doc={this.props.doc}
-                appData={this.props.appData}
-              />
+              <DataCitation pid={metadata} doc={this.props.doc} />
             </a>
           </Link>
           {this.props.doc.isPublic ? "🌍" : "🔐"}

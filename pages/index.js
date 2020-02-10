@@ -11,7 +11,7 @@ export default class extends React.Component {
         <CustomHead>
           <title>Search</title>
         </CustomHead>
-        <Search appData={this.props.appData} />
+        <Search />
       </Layout>
     );
   }

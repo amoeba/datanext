@@ -118,14 +118,12 @@ export default class Search extends React.Component {
         <Controls
           params={this.state.params}
           changeQueryParams={this.changeQueryParams}
-          appData={this.props.appData}
         />
         <SearchResults
           n={this.state.params.n}
           numFound={this.state.numFound}
           docs={this.state.docs}
           isLoaded={this.state.isLoaded}
-          appData={this.props.appData}
         />
         <style jsx>{`
           #container {
