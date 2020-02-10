@@ -27,13 +27,13 @@ export default class Header extends React.Component {
         <Link href="/">
           <a>Search</a>
         </Link>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
         <Link href="/profile">
           <a>Profile</a>
         </Link>
         <a href={this.state.loginURL}>Log In</a>
+        <Link href="/about">
+          <a>About</a>
+        </Link>
         <style jsx>{`
           header {
             margin-bottom: 0.5rem;
