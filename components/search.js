@@ -6,7 +6,7 @@ import Controls from "./controls";
 import SearchResults from "../components/searchResults";
 import TokenConext from "../shared/token-context";
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   static contextType = TokenConext;
 
   constructor(props) {
@@ -23,16 +23,6 @@ export default class Search extends React.Component {
       numFound: this.props.numFound || 0,
       isLoaded: this.props.docs || false
     };
-  }
-
-  componentDidMount() {
-    this.updateResults();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (!_.isEqual(prevState.params, this.state.params)) {
-      this.updateResults();
-    }
   }
 
   async getResults() {
@@ -52,7 +42,7 @@ export default class Search extends React.Component {
       url += "title:" + this.state.params.queryTitle;
     }
 
-    if (this.state.params.datasource) {
+    if (this.state && this.state.params && this.state.params.datasource) {
       if (
         this.state.params.datasource.length == 1 &&
         this.state.params.datasource[0] !== "All Nodes"
@@ -86,6 +76,12 @@ export default class Search extends React.Component {
     return json;
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!_.isEqual(prevState.params, this.state.params)) {
+      this.updateResults();
+    }
+  }
+
   async updateResults() {
     const data = await this.getResults();
 
@@ -117,7 +113,7 @@ export default class Search extends React.Component {
       params: nextParams,
       isLoaded: false
     });
-  }, process.env.debounce);
+  }, process.env.debounce || 1000);
 
   render() {
     return (
@@ -149,3 +145,5 @@ export default class Search extends React.Component {
     );
   }
 }
+
+export default Search;
