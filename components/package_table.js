@@ -5,43 +5,11 @@ export default class PackageTable extends React.Component {
     super(props);
 
     this.state = {
-      isLoaded: false,
-      data: null
+      files: this.props.files
     };
   }
 
-  componentDidMount() {
-    const url =
-      process.env.api_base +
-      'query/solr/?q=resourceMap:"' +
-      this.props.id +
-      '"&rows=1000&fl=id,fileName,formatType,formatId,size&wt=json';
-
-    fetch(url)
-      .then(req => {
-        return req.json();
-      })
-      .then(json => {
-        this.setState({
-          isLoaded: true,
-          data: json
-        });
-      });
-  }
-
   render() {
-    if (
-      !this.state.data ||
-      !this.state.data.response ||
-      !this.state.data.response.docs
-    ) {
-      return null;
-    }
-
-    if (!this.state.isLoaded) {
-      return "Loading...";
-    }
-
     return (
       <div>
         <table>
@@ -53,7 +21,7 @@ export default class PackageTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.data.response.docs.map((doc, i) => {
+            {this.state.files.map((doc, i) => {
               return (
                 <tr key={i}>
                   <td>{doc.fileName || doc.id}</td>
