@@ -2,7 +2,7 @@ import React from "react";
 import fetch from "isomorphic-unfetch";
 
 import Layout from "../components/Layout";
-import CustomHead from "../components/custom_head";
+import CustomHead from "../components/CustomHead";
 import Search from "../components/search";
 
 function Index({ docs, numFound }) {
@@ -25,4 +25,5 @@ Index.getInitialProps = async req => {
 
   return { docs: json.response.docs, numFound: json.response.numFound };
 };
+
 export default Index;

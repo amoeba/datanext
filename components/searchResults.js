@@ -1,5 +1,5 @@
 import React from "react";
-import SearchResult from "../components/searchResult";
+import SearchResult from "./SearchResult";
 
 export default class SearchResults extends React.Component {
   render() {

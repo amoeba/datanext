@@ -3,11 +3,11 @@ import Router from "next/router";
 import _ from "lodash";
 
 import Controls from "./controls";
-import SearchResults from "../components/searchResults";
-import TokenConext from "../shared/token-context";
+import SearchResults from "./SearchResults";
+import TokenContext from "../shared/TokenContext";
 
 class Search extends React.Component {
-  static contextType = TokenConext;
+  static contextType = TokenContext;
 
   constructor(props) {
     super(props);

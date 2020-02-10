@@ -1,8 +1,8 @@
 import React from "react";
-import App, { Container } from "next/app";
+import App from "next/app";
 import fetch from "isomorphic-unfetch";
 
-import TokenContext from "../shared/token-context";
+import TokenContext from "../shared/TokenContext";
 
 class MyApp extends App {
   constructor(props) {

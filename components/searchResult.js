@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import urlencode from "urlencode";
 
-import DataCitation from "./data_citation";
+import DataCitation from "./DataCitation";
 
 export default class SearchResult extends React.Component {
   render() {

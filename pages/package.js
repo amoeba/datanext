@@ -1,10 +1,11 @@
 import React from "react";
 import urlencode from "urlencode";
 import fetch from "isomorphic-unfetch";
+
 import Layout from "../components/Layout";
-import CustomHead from "../components/custom_head";
-import Metadata from "../components/metadata";
-import PackageTable from "../components/package_table";
+import CustomHead from "../components/CustomHead";
+import Metadata from "../components/Metadata";
+import PackageTable from "../components/PackageTable";
 
 function Package({ files }) {
   return (

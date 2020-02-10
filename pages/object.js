@@ -1,9 +1,8 @@
 import React from "react";
-import { withRouter } from "next/router";
 
 import Layout from "../components/Layout";
-import CustomHead from "../components/custom_head";
-import Metadata from "../components/metadata";
+import CustomHead from "../components/CustomHead";
+import Metadata from "../components/Metadata";
 
 export default class extends React.Component {
   static getInitialProps({ query: { object } }) {

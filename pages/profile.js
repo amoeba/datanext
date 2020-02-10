@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
-import TokenConext from "../shared/token-context";
+import TokenConext from "../shared/TokenContext";
+
 import TokenButton from "../components/TokenButton";
 
 export default class extends React.Component {

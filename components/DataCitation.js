@@ -1,7 +1,7 @@
 import React from "react";
 import nodeList from "../shared/nodeList";
 
-export default class Metadata extends React.Component {
+export default class DataCitation extends React.Component {
   render() {
     // Try to find a better node name
 

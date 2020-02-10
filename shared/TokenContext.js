@@ -2,7 +2,7 @@ import React from "react";
 
 const TokenContext = React.createContext({
   token: null,
-  updateToken: () => {},
+  updateToken: () => {}
 });
 
 export default TokenContext;

@@ -1,4 +1,4 @@
-import TokenContext from "../shared/token-context";
+import TokenContext from "../shared/TokenContext";
 
 function TokenButton() {
   return (
