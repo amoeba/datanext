@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import urlencode from "urlencode";
 import fetch from "isomorphic-unfetch";
 
@@ -8,10 +9,26 @@ import Metadata from "../../components/Metadata";
 import Citation from "../../components/Citation";
 
 function Object({ doc }) {
+  const { query } = useRouter();
+
   return (
     <Layout>
       <CustomHead>
-        <title>Object</title>
+        <title>{doc.title}</title>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Dataset",
+            name: doc.title,
+            description: doc.abstract,
+            url:
+              "https://dataone.org/datasets/" +
+              urlencode.encode(query.package) +
+              "/" +
+              urlencode.encode(query.metadata)
+          })}
+          )}
+        </script>
       </CustomHead>
       <Citation doc={doc} />
       <Metadata id={doc.identifier} />

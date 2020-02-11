@@ -15,7 +15,29 @@ function Package({ doc, files }) {
   return (
     <Layout>
       <CustomHead>
-        <title>Package</title>
+        <title>{doc.title}</title>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            "@type": "Dataset",
+            name: doc.title,
+            description: doc.abstract,
+            url:
+              "https://dataone.org/datasets/" +
+              urlencode.encode(query.package) +
+              "/" +
+              urlencode.encode(query.metadata),
+            distribution: files.map(f => {
+              return {
+                "@type": "DataDownload",
+                name: f.fileName,
+                size: f.size,
+                encodingFormat: f.formatId,
+                contentUrl: f.dataUrl
+              };
+            })
+          })}
+        </script>
       </CustomHead>
       <Citation doc={doc} />
       <PackageTable files={files} />
