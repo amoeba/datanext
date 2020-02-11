@@ -2,7 +2,7 @@ import React from "react";
 import Router from "next/router";
 import _ from "lodash";
 
-import Controls from "./controls";
+import Controls from "./Controls";
 import SearchResults from "./SearchResults";
 import TokenContext from "../shared/TokenContext";
 
