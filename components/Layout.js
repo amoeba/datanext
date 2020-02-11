@@ -1,6 +1,6 @@
 import Header from "./Header.js";
 
-export default function Layout(props) {
+function Layout(props) {
   return (
     <div>
       <Header />
@@ -14,3 +14,5 @@ export default function Layout(props) {
     </div>
   );
 }
+
+export default Layout;
