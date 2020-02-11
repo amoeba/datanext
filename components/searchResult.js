@@ -10,17 +10,17 @@ export default class SearchResult extends React.Component {
     const metadata = this.props.doc.id;
 
     if (this.props.doc.resourceMap && this.props.doc.resourceMap.length > 0) {
-      items = this.props.doc.resourceMap.map(m => {
+      items = this.props.doc.resourceMap.map(map => {
         return (
-          <li key={m}>
+          <li key={map}>
             <Link
               href={
                 "/package?package=" +
-                urlencode(m) +
+                urlencode(map) +
                 "&metadata=" +
                 urlencode(metadata)
               }
-              as={"/package/" + urlencode(m) + "/" + urlencode(metadata)}
+              as={"/package/" + urlencode(map) + "/" + urlencode(metadata)}
             >
               <a>
                 <Citation doc={this.props.doc} />
