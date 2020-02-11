@@ -14,12 +14,7 @@ export default class SearchResult extends React.Component {
         return (
           <li key={map}>
             <Link
-              href={
-                "/package?package=" +
-                urlencode(map) +
-                "&metadata=" +
-                urlencode(metadata)
-              }
+              href={"/package/[package]/[metadata]"}
               as={"/package/" + urlencode(map) + "/" + urlencode(metadata)}
             >
               <a>
@@ -43,7 +38,7 @@ export default class SearchResult extends React.Component {
       items = (
         <li>
           <Link
-            href={"/object?object=" + urlencode(metadata)}
+            href={"/object/[identifier]"}
             as={"/object/" + urlencode(metadata)}
           >
             <a>
