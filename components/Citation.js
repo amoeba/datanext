@@ -13,7 +13,7 @@ function Citation({ doc }) {
     (betterNodeName ? betterNodeName.name : doc.datasource) + ". ";
 
   return (
-    <span class="citation">
+    <span className="citation">
       <span>{authors}</span>
       <span>{pubYear}</span>
       <span className="title">{title}</span>
