@@ -35,7 +35,7 @@ export default class PackageTable extends React.Component {
         <style jsx>{`
           table {
             border-collapse: collapse;
-            margin-bottom: 1.5rem;
+            margin: 1.5rem 0;
             width: 100%;
           }
 

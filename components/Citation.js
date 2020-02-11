@@ -22,7 +22,6 @@ function Citation({ doc }) {
       <style jsx>{`
         span.citation {
           display: inline-block;
-          margin-bottom: 1.5rem;
         }
 
         span.title {
