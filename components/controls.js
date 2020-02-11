@@ -13,64 +13,86 @@ export default class Controls extends React.Component {
 
     return (
       <div id="controls">
-        <label htmlFor="filterQueryTitle">Title</label>
-        <input
-          id="filterQueryTitle"
-          type="text"
-          defaultValue={this.props.params.queryTitle}
-          onChange={e => {
-            this.props.changeQueryParams("queryTitle", e.target.value);
-          }}
-        />
-
-        <label htmlFor="filterQuery">Full Text</label>
+        <label className="more" htmlFor="filterQuery">
+          Full Text
+        </label>
         <input
           id="filterQuery"
           type="text"
           defaultValue={this.props.params.query}
+          placeholder="Enter search terms"
           onChange={e => {
             this.props.changeQueryParams("query", e.target.value);
           }}
         />
 
-        <label htmlFor="filterN">Num. Results</label>
-        <select
-          id="filterN"
-          defaultValue={this.props.params.n}
-          onChange={e => {
-            this.props.changeQueryParams("n", e.target.value);
-          }}
-        >
-          <option value="25">25</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-        </select>
+        <div className="more">
+          <label htmlFor="filterQueryTitle">Title</label>
+          <input
+            id="filterQueryTitle"
+            type="text"
+            defaultValue={this.props.params.queryTitle}
+            onChange={e => {
+              this.props.changeQueryParams("queryTitle", e.target.value);
+            }}
+          />
 
-        <label htmlFor="filterNode">Node</label>
-        <select
-          multiple={true}
-          size="10"
-          id="filterNode"
-          onChange={e => {
-            let values = [];
+          <label htmlFor="filterN">Num. Results</label>
+          <select
+            id="filterN"
+            defaultValue={this.props.params.n}
+            onChange={e => {
+              this.props.changeQueryParams("n", e.target.value);
+            }}
+          >
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
 
-            _.forEach(e.target.options, o => {
-              if (o.selected) {
-                values.push(o.value);
-              }
-            });
+          <label htmlFor="filterNode">Node</label>
+          <select
+            multiple={true}
+            size="10"
+            id="filterNode"
+            onChange={e => {
+              let values = [];
 
-            this.props.changeQueryParams("datasource", values);
-          }}
-        >
-          <option>All Nodes</option>
-          {nodes}
-        </select>
+              _.forEach(e.target.options, o => {
+                if (o.selected) {
+                  values.push(o.value);
+                }
+              });
+
+              this.props.changeQueryParams("datasource", values);
+            }}
+          >
+            <option>All Nodes</option>
+            {nodes}
+          </select>
+        </div>
         <style jsx>{`
+          #controls {
+            margin-bottom: 1.5rem;
+          }
+          input,
+          select {
+            border: 1px solid #ccc;
+            border-radius: 3px;
+          }
+
+          .more {
+            display: none;
+          }
+
           @media (min-width: 480px) {
             #controls {
               border-right: 1px solid #ccc;
               padding-right: 0.5rem;
+            }
+
+            .more {
+              display: block;
             }
           }
 
