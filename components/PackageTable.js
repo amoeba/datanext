@@ -34,18 +34,19 @@ export default class PackageTable extends React.Component {
         </table>
         <style jsx>{`
           table {
-            cell-spacing: collapse;
-            margin-bottom: 0.5rem;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
             width: 100%;
           }
 
           th,
           td {
             border: 1px solid #ccc;
+            padding: 0.25rem 0.5rem;
           }
 
           th {
-            background-color: #ccc;
+            background-color: #eee;
           }
         `}</style>
       </div>

@@ -7,7 +7,7 @@ import Layout from "../../../components/Layout";
 import CustomHead from "../../../components/CustomHead";
 import Metadata from "../../../components/Metadata";
 import PackageTable from "../../../components/PackageTable";
-import Citation from "../../../components/DataCitation";
+import Citation from "../../../components/Citation";
 
 function Package({ doc, files }) {
   const { query } = useRouter();

@@ -38,7 +38,6 @@ export default class Controls extends React.Component {
           id="filterN"
           defaultValue={this.props.params.n}
           onChange={e => {
-            console.log(e);
             this.props.changeQueryParams("n", e.target.value);
           }}
         >
@@ -68,6 +67,13 @@ export default class Controls extends React.Component {
           {nodes}
         </select>
         <style jsx>{`
+          @media (min-width: 480px) {
+            #controls {
+              border-right: 1px solid #ccc;
+              padding-right: 0.5rem;
+            }
+          }
+
           label {
             display: block;
           }
@@ -84,7 +90,7 @@ export default class Controls extends React.Component {
           }
 
           select {
-            max-width: 100%;
+            width: 100%;
           }
         `}</style>
       </div>

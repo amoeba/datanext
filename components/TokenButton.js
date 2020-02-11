@@ -6,7 +6,6 @@ function TokenButton() {
       {({ updateToken }) => (
         <button
           onClick={() => {
-            console.log("updateToken");
             updateToken("asdf");
           }}
         >

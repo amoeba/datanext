@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import urlencode from "urlencode";
 
-import DataCitation from "./DataCitation";
+import Citation from "./Citation";
 
 export default class SearchResult extends React.Component {
   render() {
@@ -24,10 +24,10 @@ export default class SearchResult extends React.Component {
               as={"/package/" + urlencode(m) + "/" + urlencode(metadata)}
             >
               <a>
-                <DataCitation pid={metadata} doc={this.props.doc} />
+                <Citation doc={this.props.doc} />
               </a>
             </Link>
-            {this.props.doc.isPublic ? "🌍" : "🔐"}
+            {this.props.doc.isPublic ? "" : "🔐"}
             <style jsx>{`
               li {
                 margin: 0 0 0.5rem 0;
@@ -36,7 +36,6 @@ export default class SearchResult extends React.Component {
 
               abbr {
                 text-decoration: none;
-                margin-right: 0.25rem;
               }
             `}</style>
           </li>
@@ -45,16 +44,15 @@ export default class SearchResult extends React.Component {
     } else {
       items = (
         <li className="search_result">
-          <abbr title="Metadata Only">📀</abbr>
           <Link
             href={"/object?object=" + urlencode(metadata)}
             as={"/object/" + urlencode(metadata)}
           >
             <a>
-              <DataCitation pid={metadata} doc={this.props.doc} />
+              <Citation doc={this.props.doc} />
             </a>
           </Link>
-          {this.props.doc.isPublic ? "🌍" : "🔐"}
+          {this.props.doc.isPublic ? "" : "🔐"}
           <style jsx>{`
             li {
               margin: 0 0 0.5rem 0;
@@ -64,6 +62,7 @@ export default class SearchResult extends React.Component {
             abbr {
               text-decoration: none;
               margin-right: 0.25rem;
+              display: inline-block;
             }
           `}</style>
         </li>

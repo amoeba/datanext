@@ -129,16 +129,12 @@ class Search extends React.Component {
           isLoaded={this.state.isLoaded}
         />
         <style jsx>{`
-          #container {
-            display: grid;
-            grid-template-columns: 225px auto;
-            grid-column-gap: 0.5rem;
-          }
-
-          #controls {
-            background-color: #eee;
-            border: 1px solid #ccc;
-            padding: 0.5rem;
+          @media (min-width: 480px) {
+            #container {
+              display: grid;
+              grid-template-columns: 225px auto;
+              grid-column-gap: 0.5rem;
+            }
           }
         `}</style>
       </div>

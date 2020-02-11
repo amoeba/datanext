@@ -5,11 +5,9 @@ import fetch from "isomorphic-unfetch";
 import Layout from "../../components/Layout";
 import CustomHead from "../../components/CustomHead";
 import Metadata from "../../components/Metadata";
-import Citation from "../../components/DataCitation";
+import Citation from "../../components/Citation";
 
 function Object({ doc }) {
-  console.log(doc);
-
   return (
     <Layout>
       <CustomHead>
