@@ -12,8 +12,7 @@ export default class SearchResult extends React.Component {
     if (this.props.doc.resourceMap && this.props.doc.resourceMap.length > 0) {
       items = this.props.doc.resourceMap.map(m => {
         return (
-          <li className="search_result" key={m}>
-            <abbr title="Data Package">📦</abbr>
+          <li key={m}>
             <Link
               href={
                 "/package?package=" +
@@ -30,12 +29,11 @@ export default class SearchResult extends React.Component {
             {this.props.doc.isPublic ? "" : "🔐"}
             <style jsx>{`
               li {
-                margin: 0 0 0.5rem 0;
+                margin: 0.25rem 0;
+                padding: 0.25rem 0;
                 line-height: 1.5rem;
-              }
-
-              abbr {
-                text-decoration: none;
+                word-break: break-all;
+                border-bottom: 1px solid #ccc;
               }
             `}</style>
           </li>
@@ -43,7 +41,7 @@ export default class SearchResult extends React.Component {
       });
     } else {
       items = (
-        <li className="search_result">
+        <li>
           <Link
             href={"/object?object=" + urlencode(metadata)}
             as={"/object/" + urlencode(metadata)}
@@ -55,14 +53,11 @@ export default class SearchResult extends React.Component {
           {this.props.doc.isPublic ? "" : "🔐"}
           <style jsx>{`
             li {
-              margin: 0 0 0.5rem 0;
+              margin: 0.25rem 0;
+              padding: 0.25rem 0;
               line-height: 1.5rem;
-            }
-
-            abbr {
-              text-decoration: none;
-              margin-right: 0.25rem;
-              display: inline-block;
+              word-break: break-all;
+              border-bottom: 1px solid #ccc;
             }
           `}</style>
         </li>

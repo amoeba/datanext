@@ -21,8 +21,8 @@ function Citation({ doc }) {
       <span>{doc.identifier}</span>
       <style jsx>{`
         span.citation {
-          margin-bottom: 1.5rem;
           display: inline-block;
+          margin-bottom: 1.5rem;
         }
 
         span.title {
