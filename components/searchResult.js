@@ -58,6 +58,17 @@ export default class SearchResult extends React.Component {
         </li>
       );
     }
-    return <div>{items}</div>;
+
+    return (
+      <div>
+        {items}
+        <style jsx>{`
+          a,
+          a:visited {
+            text-decoration: underline;
+          }
+        `}</style>
+      </div>
+    );
   }
 }
