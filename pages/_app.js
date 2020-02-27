@@ -1,6 +1,7 @@
 import React from "react";
 import App from "next/app";
 import fetch from "isomorphic-unfetch";
+import "../css/tailwind.css";
 
 import TokenContext from "../shared/TokenContext";
 

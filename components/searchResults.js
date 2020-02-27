@@ -7,7 +7,7 @@ function SearchResults(props) {
   } else {
     return (
       <div>
-        <span>
+        <span className="block mb-4 text-sm">
           {props.numFound} result(s) found. Showing {props.docs.length}.
         </span>
         <ul>
@@ -15,17 +15,6 @@ function SearchResults(props) {
             return <SearchResult key={i} doc={doc} />;
           })}
         </ul>
-        <style jsx>{`
-          ul {
-            list-style-type: none;
-            margin: 0.5rem 0 0 0;
-            padding: 0;
-          }
-
-          li {
-            margin: 0.25rem;
-          }
-        `}</style>
       </div>
     );
   }

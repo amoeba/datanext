@@ -20,34 +20,22 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <header>
+      <header className="flex flex-row bg-gray-300 p-2">
         <Link href="/">
-          <a>📈</a>
+          <a className="mr-4 text-red-700 text-medium">📈</a>
         </Link>
         <Link href="/">
-          <a>Search</a>
+          <a className="mr-4 text-red-700 text-medium">Search</a>
         </Link>
         <Link href="/profile">
-          <a>Profile</a>
+          <a className="mr-4 text-red-700 text-medium">Profile</a>
         </Link>
-        <a href={this.state.loginURL}>Log In</a>
+        <a className="mr-4 text-red-700 text-medium" href={this.state.loginURL}>
+          Log In
+        </a>
         <Link href="/about">
-          <a>About</a>
+          <a className="mr-4 text-red-700 text-medium">About</a>
         </Link>
-        <style jsx>{`
-          header {
-            margin-bottom: 0.5rem;
-          }
-
-          header a {
-            text-decoration: none;
-            margin-right: 0.5rem;
-          }
-
-          header a:visited {
-            color: blue;
-          }
-        `}</style>
       </header>
     );
   }

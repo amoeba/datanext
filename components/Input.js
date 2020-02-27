@@ -11,27 +11,6 @@ function Input() {
         }}
       />
       {after}
-      <style jsx>{`
-        div {
-          margin-bottom: 0.5rem;
-        }
-
-        input {
-          font-size: 100%;
-          width: 100%;
-        }
-
-        input[type="text"] {
-          border: 1px solid #888;
-          box-sizing: border-box;
-          padding: 0.25rem;
-        }
-
-        label {
-          display: inline-block;
-          margin-bottom: 0.25rem;
-        }
-      `}</style>
     </div>
   );
 }

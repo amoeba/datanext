@@ -13,27 +13,12 @@ function Citation({ doc }) {
     (betterNodeName ? betterNodeName.name : doc.datasource) + ". ";
 
   return (
-    <span className="citation">
-      <span className="title">{title}</span>
-      <span className="authors"> by {authors}</span>
-      <span className="pubYear"> from {pubYear} and </span>
-      <span className="repository">published on {repository}.</span>
-      <style jsx>{`
-        span.citation {
-          display: inline-block;
-        }
-
-        span.title {
-          font-weight: bold;
-        }
-
-        .authors,
-        .pubYear,
-        .repository {
-          color: #666;
-        }
-      `}</style>
-    </span>
+    <div>
+      <span className="font-medium text-blue-700">{title}</span>
+      <span> by {authors}</span>
+      <span> in {pubYear} and </span>
+      <span className="font-mono text-sm">from {repository}</span>
+    </div>
   );
 }
 

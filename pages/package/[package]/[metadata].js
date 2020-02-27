@@ -39,9 +39,15 @@ function Package({ doc, files }) {
           })}
         </script>
       </CustomHead>
-      <Citation doc={doc} />
-      <PackageTable files={files} />
-      <Metadata id={query.metadata} />
+      <div className="p-2">
+        <Citation doc={doc} />
+      </div>
+      <div className="p-2">
+        <PackageTable files={files} />
+      </div>
+      <div className="p-2">
+        <Metadata id={query.metadata} />
+      </div>
     </Layout>
   );
 }

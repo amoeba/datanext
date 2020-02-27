@@ -2,45 +2,26 @@ import React from "react";
 
 function PackageTable({ files }) {
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Format</th>
-            <th>Size</th>
-          </tr>
-        </thead>
-        <tbody>
-          {files.map((doc, i) => {
-            return (
-              <tr key={i}>
-                <td>{doc.fileName || doc.id}</td>
-                <td>{doc.formatId}</td>
-                <td>{doc.size}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <style jsx>{`
-        table {
-          border-collapse: collapse;
-          margin: 1.5rem 0;
-          width: 100%;
-        }
-
-        th,
-        td {
-          border: 1px solid #ccc;
-          padding: 0.25rem 0.5rem;
-        }
-
-        th {
-          background-color: #eee;
-        }
-      `}</style>
-    </div>
+    <table className="mt-4 mb-4 min-w-full table-auto border-collapse">
+      <thead>
+        <tr>
+          <th className="border-b border-gray-700">Name</th>
+          <th className="border-b border-gray-700">Format</th>
+          <th className="border-b border-gray-700">Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        {files.map((doc, i) => {
+          return (
+            <tr key={i}>
+              <td>{doc.fileName || doc.id}</td>
+              <td>{doc.formatId}</td>
+              <td>{doc.size}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 }
 

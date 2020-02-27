@@ -10,9 +10,12 @@ export default class SearchResult extends React.Component {
     const metadata = this.props.doc.id;
 
     if (this.props.doc.resourceMap && this.props.doc.resourceMap.length > 0) {
-      items = this.props.doc.resourceMap.map(map => {
+      return this.props.doc.resourceMap.map(map => {
         return (
-          <li key={map}>
+          <li
+            key={map}
+            className="pt-2 pb-1 border-b border-solid border-black-500"
+          >
             <Link
               href={"/package/[package]/[metadata]"}
               as={"/package/" + urlencode(map) + "/" + urlencode(metadata)}
@@ -22,21 +25,12 @@ export default class SearchResult extends React.Component {
               </a>
             </Link>
             {this.props.doc.isPublic ? "" : "🔐"}
-            <style jsx>{`
-              li {
-                margin: 0.25rem 0;
-                padding: 0.25rem 0;
-                line-height: 1.5rem;
-                word-break: break-all;
-                border-bottom: 1px solid #ccc;
-              }
-            `}</style>
           </li>
         );
       });
     } else {
-      items = (
-        <li>
+      return (
+        <li className="pt-2 pb-1 border-b border-solid border-black-500">
           <Link
             href={"/object/[identifier]"}
             as={"/object/" + urlencode(metadata)}
@@ -46,19 +40,8 @@ export default class SearchResult extends React.Component {
             </a>
           </Link>
           {this.props.doc.isPublic ? "" : "🔐"}
-          <style jsx>{`
-            li {
-              margin: 0.25rem 0;
-              padding: 0.25rem 0;
-              line-height: 1.5rem;
-              word-break: break-all;
-              border-bottom: 1px solid #ccc;
-            }
-          `}</style>
         </li>
       );
     }
-
-    return <div>{items}</div>;
   }
 }

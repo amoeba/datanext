@@ -15,21 +15,6 @@ function Select(props) {
         {children}
       </select>
       {after}
-      <style jsx>{`
-        div {
-          margin-bottom: 0.5rem;
-        }
-
-        select {
-          font-size: 100%;
-        }
-
-        label {
-          display: inline-block;
-          margin-right: 0.5rem;
-          margin-bottom: 0.25rem;
-        }
-      `}</style>
     </div>
   );
 }

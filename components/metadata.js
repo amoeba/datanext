@@ -29,12 +29,12 @@ export default class Metadata extends React.Component {
 
   render() {
     if (!this.state.isLoaded) {
-      return <div>Loading...</div>;
+      return <div className="mt-4 p-2">Loading...</div>;
     }
 
     return (
       <div
-        id="metadata"
+        className="mt-4 p-2"
         dangerouslySetInnerHTML={{ __html: this.state.html }}
       ></div>
     );

@@ -30,8 +30,12 @@ function Object({ doc }) {
           )}
         </script>
       </CustomHead>
-      <Citation doc={doc} />
-      <Metadata id={doc.identifier} />
+      <div className="p-2">
+        <Citation doc={doc} />
+      </div>
+      <div className="p-2">
+        <Metadata id={doc.identifier} />
+      </div>
     </Layout>
   );
 }

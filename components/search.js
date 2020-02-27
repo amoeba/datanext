@@ -117,7 +117,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div id="container">
+      <div className="grid p-2 md:grid-cols-sidebar md:gap-4">
         <Controls
           params={this.state.params}
           changeQueryParams={this.changeQueryParams}
@@ -128,15 +128,6 @@ class Search extends React.Component {
           docs={this.state.docs}
           isLoaded={this.state.isLoaded}
         />
-        <style jsx>{`
-          @media (min-width: 480px) {
-            #container {
-              display: grid;
-              grid-template-columns: 225px auto;
-              grid-column-gap: 0.5rem;
-            }
-          }
-        `}</style>
       </div>
     );
   }
