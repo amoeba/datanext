@@ -1,5 +1,5 @@
 import SearchResult from "./SearchResult";
-import Loaders from "./../components/Loaders";
+import Loaders from "./Loaders";
 
 function SearchResults(props) {
   if (!props.isLoaded) {
