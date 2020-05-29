@@ -1,5 +1,4 @@
 module.exports = {
-  purge: ["./pages/_app.js"],
   theme: {
     extend: {
       gridTemplateColumns: {
