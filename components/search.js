@@ -113,7 +113,7 @@ class Search extends React.Component {
       params: nextParams,
       isLoaded: false
     });
-  }, process.env.debounce || 1000);
+  }, 100);
 
   render() {
     return (
