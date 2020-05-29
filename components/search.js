@@ -6,7 +6,7 @@ import Controls from "./Controls";
 import SearchResults from "./SearchResults";
 import TokenContext from "../shared/TokenContext";
 
-class Search extends React.Component {
+export default class Search extends React.Component {
   static contextType = TokenContext;
 
   constructor(props) {
@@ -132,5 +132,3 @@ class Search extends React.Component {
     );
   }
 }
-
-export default Search;
