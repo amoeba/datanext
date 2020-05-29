@@ -1,8 +1,5 @@
 module.exports = {
-  purge: {
-    mode: "all",
-    content: ["./pages/_app.js"]
-  },
+  purge: ["./pages/_app.js"],
   theme: {
     extend: {
       gridTemplateColumns: {
