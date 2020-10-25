@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const url = 'https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=id:"' +
@@ -20,6 +21,9 @@ export default function Package({ data }) {
 
   return (
     <div>
+      <Head>
+        <title>{data.response.docs[0].title}</title>
+      </Head>
       <div>Package: {id}</div>
       <div>Title: {data.response.docs[0].title}</div>
     </div>

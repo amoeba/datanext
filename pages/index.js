@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Head from "next/head";
 
 export async function getServerSideProps(context) {
   const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=*&fl=id,title&rows=10&wt=json";
@@ -21,10 +22,10 @@ export default function Index({ results }) {
 
   return (
     <div>
-      <div>Search</div>
-      <div>
-        {items}
-      </div>
+      <Head>
+        <title>Search</title>
+      </Head>
+      {items}
     </div>
   )
 }

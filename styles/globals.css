@@ -9,3 +9,28 @@ body {
 * {
   box-sizing: border-box;
 }
+
+header,
+nav,
+main {
+  padding: 0.5rem;
+}
+
+header a,
+header a:visited,
+nav a,
+nav a:visited {
+  text-decoration: none;
+  color: blue;
+}
+
+nav a {
+  display: block;
+  margin-right: 1.5rem;
+  font-weight: bold;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+}
