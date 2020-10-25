@@ -1,7 +1,13 @@
+import Link from "next/link";
 import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+function App({ Component, pageProps }) {
+  return <div>
+    <nav>
+      <Link href="/"><a>Search</a></Link>
+    </nav>
+    <Component {...pageProps} />
+  </div>;
 }
 
-export default MyApp
+export default App
