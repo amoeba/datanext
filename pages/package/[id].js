@@ -1,23 +1,27 @@
 import { useRouter } from 'next/router'
 
 export async function getServerSideProps(context) {
+  const url = 'https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=id:"' +
+    decodeURIComponent(context.query.id) +
+    '"&fl=id,title&rows=1&wt=json';
+  const res = await fetch(url)
+  const data = await res.json()
+
   return {
     props: {
-      document: {
-        title: "Test"
-      }
-    },
-  }
+      data: data
+    }
+  };
 }
 
-export default function Package({ document }) {
+export default function Package({ data }) {
   const router = useRouter()
   const { id } = router.query
 
   return (
     <div>
-      <div>Package {id}</div>
-      <div>{document.title}</div>
+      <div>Package: {id}</div>
+      <div>Title: {data.response.docs[0].title}</div>
     </div>
   )
 }
