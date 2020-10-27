@@ -1,8 +1,14 @@
 import Link from "next/link";
 import Head from "next/head";
+import query from "lib/query";
 
 export async function getServerSideProps(context) {
-  const url = "https://cn-stage.test.dataone.org/cn/v2/query/solr/?q=*&fl=id,title&rows=10&wt=json";
+  const url = query({
+    "q": "*+AND+resourceMap:*+AND+-obsoletedBy:*+AND+formatType:METADATA",
+    "fl": "id,title,origin,pubDate,publisher",
+    "sort": "dateUploaded+desc",
+    "rows": 25
+  });
   const res = await fetch(url)
   const data = await res.json()
 
@@ -16,7 +22,7 @@ export async function getServerSideProps(context) {
 export default function Index({ results }) {
   const items = results.map((item) =>
     <div key={item.id}>
-      <Link href={"/package/" + encodeURIComponent(item.id)}><a>{item.id}</a></Link>
+      <p><Link href={"/package/" + encodeURIComponent(item.id)}><a><strong>{item.title}</strong>. <br />By {item.origin.join(", ")}</a></Link></p>
     </div >
   );
 
