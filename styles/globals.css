@@ -44,3 +44,7 @@ table.package td {
   border: 1px solid #CCC;
   padding: 0.25rem 0.5rem;
 }
+
+.metadata-view {
+  padding: 1.5rem;
+}
