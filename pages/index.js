@@ -1,14 +1,11 @@
+import { useState } from "react";
+import useSWR from "swr";
 import Link from "next/link";
 import Head from "next/head";
-import { query } from "lib/api";
+import { search } from "lib/api";
 
 export async function getServerSideProps(context) {
-  const url = query({
-    "q": "*+AND+resourceMap:*+AND+-obsoletedBy:*+AND+formatType:METADATA",
-    "fl": "id,title,origin,pubDate,publisher",
-    "sort": "dateUploaded+desc",
-    "rows": 25
-  });
+  const url = search();
   const res = await fetch(url)
   const data = await res.json()
 
@@ -20,7 +17,16 @@ export async function getServerSideProps(context) {
 }
 
 export default function Index({ results }) {
-  const items = results.map((item) =>
+  const [queryString, changeQueryString] = useState("*");
+  const url = search(queryString);
+  const viewFetcher = function (url) {
+    return fetch(url).then(req => {
+      return req.json()
+    })
+  }
+  const { data, error } = useSWR(url, viewFetcher);
+  const docs = data ? data.response.docs : results;
+  const items = docs.map((item) =>
     <div key={item.id}>
       <p>
         <Link href={"/package/" + encodeURIComponent(item.id)}>
@@ -35,6 +41,7 @@ export default function Index({ results }) {
       <Head>
         <title>Search</title>
       </Head>
+      <p><input type="text" onBlur={(e) => changeQueryString(e.target.value)} /></p>
       {items}
     </div>
   )
