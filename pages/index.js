@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Head from "next/head";
-import query from "lib/api";
+import { query } from "lib/api";
 
 export async function getServerSideProps(context) {
   const url = query({

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import PackageTable from "components/PackageTable";
 import MetadataView from "components/MetadataView";
-import query from "lib/api";
+import { query } from "lib/api";
 
 export async function getServerSideProps(context) {
   const url = query({
