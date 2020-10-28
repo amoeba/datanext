@@ -10,6 +10,9 @@ function App({ Component, pageProps }) {
     </header>
     <nav>
       <Link href="/"><a>Search</a></Link>
+      <Link href="/profile"><a>Profile</a></Link>
+
+      <Link href="/about"><a>About</a></Link>
     </nav>
     <main>
       <Component {...pageProps} />

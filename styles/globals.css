@@ -24,9 +24,13 @@ nav a:visited {
   color: blue;
 }
 
+nav {
+  display: flex;
+}
+
 nav a {
   display: block;
-  margin-right: 1.5rem;
+  margin-right: 0.5rem;
   font-weight: bold;
 }
 
@@ -47,4 +51,9 @@ table.package td {
 
 .metadata-view {
   padding: 1.5rem;
+}
+
+input {
+  font-size: inherit;
+  width: 100%;
 }

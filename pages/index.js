@@ -41,7 +41,10 @@ export default function Index({ results }) {
       <Head>
         <title>Search</title>
       </Head>
-      <p><input type="text" onBlur={(e) => changeQueryString(e.target.value)} /></p>
+      <p><input
+        type="text"
+        placeholder="Enter a search term..."
+        onBlur={(e) => changeQueryString(e.target.value)} /></p>
       {items}
     </div>
   )
