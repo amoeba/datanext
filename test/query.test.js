@@ -1,14 +1,14 @@
-const query = require("../lib/query");
+const api = require("../lib/api");
 
 test("query works", () => {
   expect(
-    query.query({ "fl": "identifier" })
-  ).toBe("?fl=identifier&wt=json");
+    api.query({ "fl": "identifier" })
+  ).toBe("https://search.dataone.org/cn/v2/query/solr/?fl=identifier&wt=json");
 
   expect(
-    query.query({
+    api.query({
       "q": "formatType:METADATA",
       "fl": "identifier"
     })
-  ).toBe("?q=formatType:METADATA&fl=identifier&wt=jso");
+  ).toBe("https://search.dataone.org/cn/v2/query/solr/?q=formatType:METADATA&fl=identifier&wt=json");
 });
