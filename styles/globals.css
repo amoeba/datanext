@@ -45,8 +45,15 @@ table.package {
 }
 
 table.package td {
-  border: 1px solid #CCC;
   padding: 0.25rem 0.5rem;
+}
+
+table.package th {
+  border-bottom: 1px solid #AAA;
+}
+
+table.package td {
+  border-bottom: 1px solid #CCC;
 }
 
 .metadata-view {
