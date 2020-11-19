@@ -33,7 +33,7 @@ export default function Index({ results }) {
           <a><strong>{item.title}</strong>. <br />By {item.origin.join(", ")}</a>
         </Link>
       </p>
-    </div >
+    </div>
   );
 
   return (
