@@ -8,14 +8,13 @@ function App({ Component, pageProps }) {
       Sign In
     </div>
     <header>
-    <Link href="/"><a>
-        <h1>DataONE</h1>
-      </a></Link>
-
+      <Link href="/"><a>
+        <h1>DataONE</h1></a>
+      </Link>
       <nav>
-      <Link href="/search"><a>Search</a></Link>
-      <Link href="/about"><a>About</a></Link>
-    </nav>
+        <Link href="/search"><a>Search</a></Link>
+        <Link href="/about"><a>About</a></Link>
+      </nav>
     </header>
     <main>
       <Component {...pageProps} />
