@@ -7,7 +7,7 @@ export default function Index() {
       <Head>
         <title>DataONE</title>
       </Head>
-      Index
+      Welcome to DataONE!
     </div>
   )
 }

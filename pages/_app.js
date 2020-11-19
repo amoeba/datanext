@@ -4,13 +4,19 @@ import "../styles/globals.css";
 function App({ Component, pageProps }) {
   return (
     <div>
-      <div id="top">Sign In</div>
-      <header>
+      <div id="topbar">
         <Link href="/">
-          <a>
-            <h1>DataONE</h1>
-          </a>
+          <a>Sign In</a>
         </Link>
+        </div>
+      <header>
+        <div>
+          <Link href="/">
+            <a>
+              <h1>DataONE</h1>
+            </a>
+          </Link>
+        </div>
         <nav>
           <Link href="/search">
             <a>Search</a>
