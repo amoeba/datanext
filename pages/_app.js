@@ -3,17 +3,20 @@ import '../styles/globals.css'
 
 function App({ Component, pageProps }) {
   return <div>
-    <header>
-      <Link href="/"><a>
-        <h1>datanext</h1>
-      </a></Link>
-    </header>
-    <nav>
-      <Link href="/"><a>Search</a></Link>
-      <Link href="/profile"><a>Profile</a></Link>
 
+    <div id="top">
+      Sign In
+    </div>
+    <header>
+    <Link href="/"><a>
+        <h1>DataONE</h1>
+      </a></Link>
+
+      <nav>
+      <Link href="/search"><a>Search</a></Link>
       <Link href="/about"><a>About</a></Link>
     </nav>
+    </header>
     <main>
       <Component {...pageProps} />
     </main>
