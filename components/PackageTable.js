@@ -8,6 +8,7 @@ export default function PackageTable({ members }) {
       <td>{member.fileName}</td>
       <td>{member.formatId}</td>
       <td>{member.size}</td>
+      <td><a class="button" href={member.dataUrl}>Download</a></td>
     </tr>)
 
   return <table className="package">
@@ -16,6 +17,7 @@ export default function PackageTable({ members }) {
         <th>Name</th>
         <th>Format</th>
         <th>Size</th>
+        <th>Download</th>
       </tr>
     </thead>
     <tbody>

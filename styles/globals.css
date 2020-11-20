@@ -80,6 +80,20 @@ table.package td {
   border-bottom: 1px solid #CCC;
 }
 
+a.button {
+  background-color: rgb(214, 28, 69);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  color: white;
+  font-size: 75%;
+  padding: 0.1rem 0.2rem;
+  text-decoration: none;
+}
+
+a.button:hover {
+  background-color: rgb(245, 31, 78);
+}
+
 .metadata-view {
   padding: 1.5rem;
 }
