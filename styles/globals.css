@@ -52,11 +52,15 @@ nav {
 
 nav a {
   display: block;
-  margin-left: 1rem;
+  padding: 0 0.5rem;
 }
 
 nav a:first-child {
-  margin-left: 0;
+  padding-left: 0;
+}
+
+nav a:last-child {
+  padding-right: 0;
 }
 
 table.package {
