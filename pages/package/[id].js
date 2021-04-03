@@ -1,29 +1,23 @@
 import Head from "next/head";
-import PackageTable from "components/PackageTable";
+import { useRouter } from 'next/router'
+import useSWR from "swr"
+import Packages from "components/Packages";
 import MetadataView from "components/MetadataView";
-import { object, pkg } from "lib/api";
+import { object } from "lib/api";
 
-export async function getServerSideProps(context) {
-  const url = object(decodeURIComponent(context.query.id));
-  const res = await fetch(url)
-  const data = await res.json()
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-  const doc = data.response.docs[0];
+export default function Package() {
+  const router = useRouter()
+  const { id } = router.query
 
-  // Package
-  const package_url = pkg(doc.resourceMap);
-  const package_res = await fetch(package_url);
-  const package_data = await package_res.json();
+  const { data, error } = useSWR(object(id), fetcher)
 
-  return {
-    props: {
-      document: doc,
-      members: package_data.response.docs
-    }
-  };
-}
+  if (error) return <div className="error">error</div>
+  if (!data) return <div className="loading">loading</div>
 
-export default function Package({ document, members }) {
+  const document = data.response.docs[0]
+
   return (
     <div>
       <Head>
@@ -31,7 +25,7 @@ export default function Package({ document, members }) {
       </Head>
       <h2>{document.title}</h2>
       <h3>By {document.origin.join(", ")}</h3>
-      <PackageTable members={members} />
+      <Packages ids={document.resourceMap} />
       <MetadataView
         className="metadata-view"
         identifier={document.identifier} />
