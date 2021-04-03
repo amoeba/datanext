@@ -1,17 +1,26 @@
 import useSWR from "swr";
-import { base_url } from "lib/api";
+import ErrorMessage from "components/ErrorMessage";
+import { view } from "lib/api";
 
-export default function MetadataView({ identifier }) {
-  const view_url = base_url + "views/metacatui/" + encodeURIComponent(identifier);
-  const viewFetcher = function (url) {
-    return fetch(url).then(req => {
-      return req.text()
-    })
+const fetcher = async url => {
+  const res = await fetch(url)
+
+  if (!res.ok) {
+    const error = new Error('An error occurred while fetching the data.')
+
+    error.info = await res.text()
+    error.status = res.status
+
+    throw error
   }
 
-  const { data, error } = useSWR(view_url, viewFetcher);
+  return res.text()
+}
 
-  if (error) return <div>Failed to load due to {error}.</div>;
+export default function MetadataView({ id }) {
+  const { data, error } = useSWR(view(id), fetcher);
+
+  if (error) return <ErrorMessage error={error} />
   if (!data) return <div className="loading">Loading...</div>;
 
   return (

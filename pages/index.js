@@ -1,4 +1,5 @@
 import Head from "next/head";
+import DebugBox from "../components/DebugBox"
 
 export default function Index() {
 

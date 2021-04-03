@@ -1,7 +1,7 @@
 import Package from "../components/Package"
 
 export default function Packages({ ids }) {
-  const content = ids.map(p => <Package id={p} />)
+  const content = ids.map(p => <Package key={p} id={p} />)
 
-  return <div>{content}</div>
+  return <div className="packages">{content}</div>
 }

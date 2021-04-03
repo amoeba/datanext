@@ -63,42 +63,55 @@ nav a:last-child {
   padding-right: 0;
 }
 
-table.package {
+.package-table-wrapper {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+table.package-table {
   box-sizing: content-box;
   border-collapse: collapse;
 }
 
-table.package td {
+table.package-table td {
   padding: 0.25rem 0.5rem;
-}
-
-table.package th {
-  border-bottom: 1px solid #AAA;
-}
-
-table.package td {
-  border-bottom: 1px solid #CCC;
-}
-
-a.button {
-  background-color: rgb(214, 28, 69);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  color: white;
-  font-size: 75%;
-  padding: 0.1rem 0.2rem;
-  text-decoration: none;
-}
-
-a.button:hover {
-  background-color: rgb(245, 31, 78);
-}
-
-.metadata-view {
-  padding: 1.5rem;
 }
 
 input {
   font-size: inherit;
   width: 100%;
+}
+
+.debug-box {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  line-height: 1.5em;
+  margin-bottom: 1.5rem;
+}
+
+.debug-box-header {
+  background-color: #eee;
+}
+
+.debug-box-header,
+.debug-box-body {
+  padding: 0.25em 0.5em;
+}
+
+.error {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  line-height: 1.5em;
+  display: inline-block;
+  min-width: 300px;
+}
+
+.error-header {
+  background-color: red;
+  padding: 0.25em 0.5em;
+  color: white;
+}
+
+.error-body {
+  padding: 0.2em 0.5em;
 }

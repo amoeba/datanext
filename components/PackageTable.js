@@ -20,17 +20,19 @@ export default function PackageTable({ id }) {
     PackageTableItem(item)
   );
 
-  return <table className="package">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Format</th>
-        <th>Size</th>
-        <th>Download</th>
-      </tr>
-    </thead>
-    <tbody>
-      {rows}
-    </tbody>
-  </table>
+  return <div class="package-table-wrapper">
+    <table className="package-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Format</th>
+          <th>Size</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows}
+      </tbody>
+    </table>
+  </div>
 }
