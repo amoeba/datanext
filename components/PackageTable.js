@@ -20,7 +20,7 @@ export default function PackageTable({ id }) {
     PackageTableItem(item)
   );
 
-  return <div class="package-table-wrapper">
+  return <div className="package-table-wrapper">
     <table className="package-table">
       <thead>
         <tr>
