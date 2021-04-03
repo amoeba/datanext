@@ -11,8 +11,11 @@ export default function Package({ id }) {
   if (error) return <div className="error">error</div>
   if (!data) return <div className="loading">loading</div>
 
+  // Show not found
+  if (data.response.docs.length === 0) return <div>Package {id} not found</div>
+
   // Don't show obsolete packages
-  if (data.response.docs[0].obsoletedBy) return <div>obsolete</div>
+  if (data.response.docs[0].obsoletedBy) return <div>Package is obsolete</div>
 
   return <div className="package">
     <DebugBox title={"Package " + id}>
