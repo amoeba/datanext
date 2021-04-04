@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from 'next/router'
 import useSWR from "swr"
 import Packages from "components/Packages";
@@ -25,6 +26,9 @@ export default function Package() {
       <Head>
         <title>{document.title}</title>
       </Head>
+      <nav className="breadcrumb">
+        <Link href="/search"><a>Search</a></Link> ▶ <Link href={"/package/" + encodeURIComponent(id)}><a>{document.title}</a></Link>
+      </nav>
 
       <h2>{document.title}</h2>
       <h3>By {document.origin.join(", ")}</h3>

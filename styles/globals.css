@@ -14,8 +14,8 @@ body {
 #topbar a:visited,
 header a,
 header a:visited,
-nav a,
-nav a:visited {
+header nav a,
+header nav a:visited {
   text-decoration: none;
   color: white;
 }
@@ -43,23 +43,23 @@ header h1 {
   font-weight: 500;
 }
 
-nav {
+header nav {
   display: flex;
   flex-grow: 2;
   justify-content: flex-end;
   align-items: flex-end;
 }
 
-nav a {
+header nav a {
   display: block;
   padding: 0 0.5rem;
 }
 
-nav a:first-child {
+header nav a:first-child {
   padding-left: 0;
 }
 
-nav a:last-child {
+header nav a:last-child {
   padding-right: 0;
 }
 
@@ -114,4 +114,9 @@ input {
 
 .error-body {
   padding: 0.2em 0.5em;
+}
+
+.breadcrumb a,
+.breadcrumb a:visited {
+  color: blue;
 }
