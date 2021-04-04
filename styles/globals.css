@@ -120,3 +120,35 @@ input {
 .breadcrumb a:visited {
   color: blue;
 }
+
+.search-result {
+  display: flex;
+}
+
+.search-result.loading {
+  animation: 0.5s infinite alternate pulse;
+}
+
+.search-result > div {
+  padding: 0.25em;
+}
+
+.search-result-text {
+  width: 100%;
+}
+
+.search-result.loading > .search-result-text > div {
+  background-color: rgba(200, 200, 200, 0.75);
+  width: 100%;
+  margin: 4px 0;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.8;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
