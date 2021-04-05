@@ -2,26 +2,35 @@ import Head from "next/head";
 import useSWR from "swr";
 import { search } from "lib/api";
 import SearchResultLoaders from "../components/SearchResultLoaders";
-import SearchResult from "../components/SearchResult"
+import SearchResults from "../components/SearchResults"
+import React, { useState } from "react"
+import _ from "lodash"
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Index() {
-  const { data, error } = useSWR(search(), fetcher)
+  const [query, setQuery] = useState("*")
 
-  if (error) return <div className="error">error</div>
-  if (!data) return <SearchResultLoaders n="25" />
+  // Debounced setQuery
+  const updateQuery = _.debounce((e) => {
+    setQuery(e.target.value)
+  }, 300)
 
-  const items = data.response.docs.map((doc) =>
-    <SearchResult key={doc.id} doc={doc} />
-  );
+  const { data, error } = useSWR(search(query), fetcher)
+
+  let content
+
+  if (error) content = <ErrorMessage error={error} />
+  if (!data) content = <SearchResultLoaders n="25" />
+  if (data) content = <SearchResults data={data} />
 
   return (
     <div>
       <Head>
         <title>Search</title>
       </Head>
-      {items}
+      <input type="text" placeholder="Filter results" onChange={updateQuery} />
+      {content}
     </div>
   )
 }
