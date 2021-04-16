@@ -152,3 +152,12 @@ input {
     opacity: 1;
   }
 }
+
+.quick-search form {
+  display: flex;
+  font-size: 2em;
+}
+
+.quick-search button {
+  width: 4em;
+}

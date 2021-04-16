@@ -4,12 +4,17 @@ import { search } from "lib/api";
 import SearchResultLoaders from "../components/SearchResultLoaders";
 import SearchResults from "../components/SearchResults"
 import React, { useState } from "react"
+import { useRouter } from "next/router"
 import _ from "lodash"
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Index() {
-  const [query, setQuery] = useState("*")
+  const router = useRouter();
+  const { q } = router.query
+
+  const [query, setQuery] = useState(q || "*")
+
 
   // Debounced setQuery
   const updateQuery = _.debounce((e) => {

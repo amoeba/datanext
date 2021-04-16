@@ -1,5 +1,5 @@
 import Head from "next/head";
-import DebugBox from "../components/DebugBox"
+import QuickSearch from "../components/QuickSearch"
 
 export default function Index() {
 
@@ -8,7 +8,8 @@ export default function Index() {
       <Head>
         <title>DataONE</title>
       </Head>
-      Welcome to DataONE!
+      <h1>Welcome to DataONE!</h1>
+      <QuickSearch />
     </div>
   )
 }
