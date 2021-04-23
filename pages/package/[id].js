@@ -25,6 +25,7 @@ export default function Package() {
     <div>
       <Head>
         <title>{document.title}</title>
+        <meta name="description" content={document.abstract} />
       </Head>
       <nav className="breadcrumb">
         <Link href="/search"><a>Search</a></Link> ▶ <Link href={"/package/" + encodeURIComponent(id)}><a>{document.title}</a></Link>

@@ -9,7 +9,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <meta name="description" content="DataNext Search Catalog" />
+        </Head>
         <body>
           <Main />
           <NextScript />
