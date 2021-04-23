@@ -77,6 +77,10 @@ table.package-table td {
   padding: 0.25rem 0.5rem;
 }
 
+.metadata-view {
+  overflow-x: scroll;
+}
+
 input {
   font-size: inherit;
   width: 100%;
@@ -91,6 +95,7 @@ input {
 
 .debug-box-header {
   background-color: #eee;
+  overflow-wrap: break-word;
 }
 
 .debug-box-header,
