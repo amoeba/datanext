@@ -17,7 +17,7 @@ header a:visited,
 header nav a,
 header nav a:visited {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 #topbar,
