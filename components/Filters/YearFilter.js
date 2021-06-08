@@ -22,5 +22,3 @@ export default function YearFilter({ query, updateQuery }) {
     </div>
   </div>
 }
-
-// beginDate:[1800-01-01T00:00:00Z%20TO%20*]%20AND%20endDate:[*%20TO%201990-12-31T00:00:00Z]

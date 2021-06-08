@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function AbstractFilter({ query, updateQuery }) {
-  const [abstract, setAbstract] = useState(query.q?.abstract)
+  const [abstract, setAbstract] = useState("")
 
   return <div className="input-group">
     <div className="input-group-name">Abstract</div>

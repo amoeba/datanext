@@ -177,9 +177,17 @@ table.package-table td {
   }
 }
 
+.quick-search input {
+  width: 100%;
+  font-size: 125%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
 .quick-search form {
   display: flex;
   font-size: 2em;
+  width: 100%;
 }
 
 .quick-search button {
