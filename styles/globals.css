@@ -81,7 +81,26 @@ table.package-table td {
   overflow-x: scroll;
 }
 
-input {
+.input-group {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10ch auto;
+  gap: 1em;
+  margin: 1em 0;
+}
+
+.input-group-name {
+  text-align: right;
+  font-weight: bold;
+}
+
+.input-group-controls {
+  width: 100%;
+  display: flex;
+  gap: 1em;
+}
+
+.input-group input {
   font-size: inherit;
   width: 100%;
 }

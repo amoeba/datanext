@@ -7,7 +7,9 @@ import useSWR from "swr";
 
 import SearchResultLoaders from "../components/SearchResultLoaders";
 import SearchResults from "../components/SearchResults";
+import TitleFilter from "../components/Filters/TitleFilter";
 import AbstractFilter from "../components/Filters/AbstractFilter";
+import YearFilter from "../components/Filters/YearFilter";
 import ErrorMessage from "../components/ErrorMessage"
 import { default_query, to_solr_query } from "../lib/api"
 
@@ -46,8 +48,9 @@ export default function Index() {
       <div>
         Query is '{to_solr_query(query)}'
       </div>
-      <input type="text" placeholder="Filter results" value={query.q?.title} onChange={(e) => { updateQuery({ "q": { "title": e.target.value } }) }} />
+      <TitleFilter query={query} updateQuery={updateQuery} />
       <AbstractFilter query={query} updateQuery={updateQuery} />
+      <YearFilter query={query} updateQuery={updateQuery} />
       {content}
     </div>
   )
