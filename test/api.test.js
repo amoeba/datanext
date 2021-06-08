@@ -14,8 +14,8 @@ test("query works", () => {
 });
 
 test("to_solr_query_params works", () => {
-  expect(api.to_solr_query(null)).toBe("q=title:\"*\" AND resourceMap:\"*\" AND -obsoletedBy:\"*\" AND formatType:\"METADATA\"&fl=id,title,origin,pubDate,publisher&sort=dateUploaded+desc&rows=25")
-  expect(api.to_solr_query({ "q": { "title": "fish" } })).toBe("q=title:\"fish\" AND resourceMap:\"*\" AND -obsoletedBy:\"*\" AND formatType:\"METADATA\"&fl=id,title,origin,pubDate,publisher&sort=dateUploaded+desc&rows=25")
+  expect(api.to_solr_query(null)).toBe("q=title:*+AND+resourceMap:*+AND+-obsoletedBy:*+AND+formatType:METADATA&fl=id,title,origin,pubDate,publisher&sort=dateUploaded+desc&rows=25&wt=json")
+  expect(api.to_solr_query({ "q": { "title": "fish" } })).toBe("q=title:fish+AND+resourceMap:*+AND+-obsoletedBy:*+AND+formatType:METADATA&fl=id,title,origin,pubDate,publisher&sort=dateUploaded+desc&rows=25&wt=json")
 })
 
 test("to_solr_query_params works", () => {
@@ -23,14 +23,14 @@ test("to_solr_query_params works", () => {
     "q": {
       "title": "foobar"
     }
-  })).toBe('q=title:"foobar"')
+  })).toBe('q=title:foobar')
 
   expect(api.to_solr_query_params({
     "q": {
       "title": "foobar",
       "abstract": "Interesting!"
     }
-  })).toBe('q=title:"foobar" AND abstract:"Interesting!"')
+  })).toBe('q=title:foobar+AND+abstract:Interesting!')
 })
 
 test("empty params are ignored", () => {
@@ -38,5 +38,5 @@ test("empty params are ignored", () => {
     "q": {
       "abstract": ""
     }
-  })).toBe("")
+  })).toBe("q=")
 })
