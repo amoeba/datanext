@@ -112,8 +112,8 @@ input {
 }
 
 .error-header {
-  background-color: red;
-  padding: 0.5em;
+  background-color: rgba(255, 0, 0, 0.9);
+  padding: 0.25em 0.5em;
   color: white;
 }
 

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import QuickSearch from "../components/QuickSearch"
+import QuickSearch from "../components/QuickSearch";
 
 export default function Index() {
 

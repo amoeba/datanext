@@ -1,12 +1,13 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useRouter } from 'next/router'
-import useSWR from "swr"
-import Packages from "components/Packages";
-import MetadataView from "components/MetadataView";
-import DebugBox from "components/DebugBox";
-import ErrorMessage from "components/ErrorMessage";
-import { object } from "lib/api";
+import { useRouter } from 'next/router';
+import useSWR from "swr";
+
+import DebugBox from "../../components/DebugBox";
+import ErrorMessage from "../../components/ErrorMessage";
+import MetadataView from "../../components/MetadataView";
+import Packages from "../../components/Packages";
+import { object } from "../../lib/api";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 

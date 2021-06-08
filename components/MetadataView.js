@@ -1,6 +1,7 @@
 import useSWR from "swr";
-import ErrorMessage from "components/ErrorMessage";
-import { view } from "lib/api";
+
+import ErrorMessage from "./ErrorMessage";
+import { view } from "../lib/api";
 
 const fetcher = async url => {
   const res = await fetch(url)

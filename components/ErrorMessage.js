@@ -1,12 +1,13 @@
-export default function Error({ error }) {
+export default function Error({ data, error }) {
   console.log("Error is", error)
 
   return <div className="error">
+
     <div className="error-header">
-      Error {error.status || ""}
+      {error.name}
     </div>
     <div className="error-body">
-      <div dangerouslySetInnerHTML={{ __html: error.info }} />
+      {error.message}
     </div>
   </div>
 }
