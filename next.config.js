@@ -1,6 +1,4 @@
 module.exports = {
   analyticsId: 'mrjangVhbTKBvzJvezx5aFsjkLb',
-  future: {
-    webpack5: true,
-  }
+  webpack5: true,
 }
