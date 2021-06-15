@@ -18,7 +18,7 @@ function App({ Component, pageProps }) {
           </Link>
         </div>
         <nav>
-          <Link href="/search">
+          <Link href="/">
             <a>Search</a>
           </Link>
           <Link href="/about">
