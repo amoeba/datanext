@@ -17,9 +17,16 @@ export default function Package() {
 
   const { data, error } = useSWR(object(id), fetcher)
 
-  if (error) return <ErrorMessage message={error} />
+  if (error) return <ErrorMessage error={error} />
   if (!data) return <div className="loading">loading</div>
 
+  if (data.response.numFound !== 1) {
+    const errorMsg = {
+      name: "Document not found",
+      message: "Nothing was found for id " + id + "."
+    }
+    return <ErrorMessage error={errorMsg}></ErrorMessage>
+  }
   const document = data.response.docs[0]
 
   return (
