@@ -13,6 +13,7 @@ export default function SearchResult({ doc }) {
       <Link href={"/package/" + encodeURIComponent(doc.id)}>
         <a><strong>{doc.title}</strong>. <br />By {doc.origin.join(", ")}</a>
       </Link>
+      {!doc.isPublic ? "🔐" : ""}
     </div>
   </div>
 }

@@ -1,36 +1,18 @@
-import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
+import Header from "../components/Header"
+import Footer from "../components/Footer"
 import "../styles/globals.css";
+import { StoreProvider } from "../lib/store"
 
 function App({ Component, pageProps }) {
   return (
-    <div>
-      <div id="topbar">
-        <Link href="/">
-          <a>Sign In</a>
-        </Link>
-        </div>
-      <header>
-        <div>
-          <Link href="/">
-            <a>
-              <h1>DataONE</h1>
-            </a>
-          </Link>
-        </div>
-        <nav>
-          <Link href="/">
-            <a>Search</a>
-          </Link>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </nav>
-      </header>
+    <StoreProvider>
+      <Header />
       <main>
         <Component {...pageProps} />
       </main>
-      <footer></footer>
-    </div>
+      <Footer />
+    </StoreProvider>
   );
 }
 
