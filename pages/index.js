@@ -14,12 +14,7 @@ import ErrorMessage from "../components/ErrorMessage"
 import { default_query, to_solr_query_params } from "../lib/api"
 import { StoreContext } from "../lib/store";
 
-const fetcher = function (...args) {
-  console.log(args);
-  return fetch(...args)
-    .then(res => res.json())
-
-}
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Search() {
   // Set initial state
@@ -32,10 +27,8 @@ export default function Search() {
 
   // Auth
   const { token } = useContext(StoreContext)
-  console.log("context is ", token);
 
   // Fetch
-  console.log("About to fetch ", search(query), " with token", token[0]);
   const { data, error } = useSWR([search(query), token[0]], (url, token) => fetcher(url, { headers: { "Authorization": "Bearer " + token } }))
 
   let content
