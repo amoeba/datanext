@@ -1,9 +1,7 @@
 import Link from "next/link"
+import ProfileButton from "./SignInButton"
 
 export default function Header() {
-  // TODO: Factor out
-  const signInUrl = "https://cn.dataone.org/portal/oauth?action=start&target=http://localhost:3000"
-
   return <header>
     <div>
       <Link href="/">
@@ -19,9 +17,7 @@ export default function Header() {
       <Link href="/about">
         <a>About</a>
       </Link>
-      <Link href={signInUrl}>
-        <a>Sign In</a>
-      </Link>
+      <ProfileButton></ProfileButton>
     </nav>
   </header>
 }
