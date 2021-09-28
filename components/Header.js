@@ -1,5 +1,5 @@
 import Link from "next/link"
-import ProfileButton from "./SignInButton"
+import ProfileButton from "./ProfileButton"
 
 export default function Header() {
   return <header>
