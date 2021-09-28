@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cn } from "../lib/api";
 import { StoreContext } from "../lib/store"
 
-export default function SignInButton() {
+export default function ProfileButton() {
   const [href, setHref] = useState(null);
 
   useEffect(async () => {
