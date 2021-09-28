@@ -4,29 +4,27 @@ import { cn } from "../lib/api";
 import { StoreContext } from "../lib/store"
 
 export default function SignInButton() {
-  const [href, setHref] = useState("");
+  const [href, setHref] = useState(null);
 
   useEffect(async () => {
     setHref(cn + "/portal/oauth?action=start&target=" + window.location.href)
   })
 
-  const { token, isLoggedIn, name } = useContext(StoreContext)
+  const { isLoggedIn, name } = useContext(StoreContext)
 
-  if (!href) {
-    return "Loading..."
-  }
+  let content
 
-  if (isLoggedIn) {
-    return <div>
-      <Link href="/profile">
-        <a>{name[0]}</a>
-      </Link>
-    </div>
+  if (isLoggedIn[0]) {
+    content = <Link href="/profile">
+      <a>{name[0]}</a>
+    </Link>
+  } else if (href && !isLoggedIn[0]) {
+    content = "Sign In"
+  } else {
+    content = "Loading..."
   }
 
   return <div>
-    <Link href={href}>
-      <a>Sign In</a>
-    </Link>
+    {content}
   </div>
 }
