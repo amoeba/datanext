@@ -6,9 +6,13 @@ import { StoreContext } from "../lib/store"
 export default function ProfileButton() {
   const [href, setHref] = useState(null);
 
-  useEffect(async () => {
-    setHref(cn + "/portal/oauth?action=start&target=" + window.location.href)
-  })
+  useEffect(() => {
+    async function updateHref() {
+      setHref(cn + "/portal/oauth?action=start&target=" + window.location.href)
+    }
+
+    updateHref();
+  }, [])
 
   const { isLoggedIn, name } = useContext(StoreContext)
 
