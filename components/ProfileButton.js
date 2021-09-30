@@ -19,7 +19,7 @@ export default function ProfileButton() {
       <a>{name[0]}</a>
     </Link>
   } else if (href && !isLoggedIn[0]) {
-    content = "Sign In"
+    content = <Link href={href}><a>Sign In</a></Link>
   } else {
     content = "Loading..."
   }
