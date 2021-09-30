@@ -37,7 +37,6 @@ export default function Search() {
   if (!data) content = <SearchResultLoaders n="25" />
   if (data) content = <SearchResults data={data} />
 
-
   return (
     <div>
       <Head>
