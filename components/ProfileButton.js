@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
-import { cn } from "../lib/api";
+import { cn, portal_path } from "../lib/api";
 import { StoreContext } from "../lib/store"
 
 export default function ProfileButton() {
@@ -8,7 +8,7 @@ export default function ProfileButton() {
 
   useEffect(() => {
     async function updateHref() {
-      setHref(cn + "/portal/oauth?action=start&target=" + window.location.href)
+      setHref(cn + portal_path + window.location.href)
     }
 
     updateHref();
