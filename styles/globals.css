@@ -10,6 +10,10 @@ body {
   box-sizing: border-box;
 }
 
+input, textarea {
+  max-width: 100%;
+}
+
 #topbar a,
 #topbar a:visited,
 header a,
