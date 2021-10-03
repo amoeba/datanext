@@ -7,6 +7,7 @@ import useSWR from "swr";
 
 import SearchResultLoaders from "../components/SearchResultLoaders";
 import SearchResults from "../components/SearchResults";
+import SearchLoader from "../components/SearchLoader";
 import TitleFilter from "../components/Filters/TitleFilter";
 import AbstractFilter from "../components/Filters/AbstractFilter";
 import YearFilter from "../components/Filters/YearFilter";
@@ -31,11 +32,10 @@ export default function Search() {
 
   // Fetch
   const { data, error } = useSWR([search(query), token[0]], (url, token) => fetcher(url, { headers: { "Authorization": "Bearer " + token } }))
-
   let content
 
   if (error || (data && (!data.response || !data.response.docs))) content = <ErrorMessage data={data} error={error} />
-  if (!data) content = <SearchResultLoaders n="25" />
+  if (!data) content = <SearchLoader />
   if (data) content = <SearchResults data={data} />
 
   return (

@@ -159,8 +159,8 @@ table.package-table td {
   display: flex;
 }
 
-.search-result.loading {
-  animation: 0.5s infinite alternate pulse;
+.pulse {
+  animation: 0.5s ease infinite alternate pulse;
 }
 
 .search-result > div {
@@ -195,7 +195,7 @@ table.package-table td {
 
 @keyframes pulse {
   from {
-    opacity: 0.8;
+    opacity: 0;
   }
 
   to {
