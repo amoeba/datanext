@@ -10,6 +10,7 @@ import SearchResults from "../components/SearchResults";
 import TitleFilter from "../components/Filters/TitleFilter";
 import AbstractFilter from "../components/Filters/AbstractFilter";
 import YearFilter from "../components/Filters/YearFilter";
+import TextFilter from "../components/Filters/TextFilter";
 import ErrorMessage from "../components/ErrorMessage"
 import { default_query, to_solr_query_params } from "../lib/api"
 import { StoreContext } from "../lib/store";
@@ -42,9 +43,10 @@ export default function Search() {
       <Head>
         <title>Search</title>
       </Head>
-      <TitleFilter query={query} updateQuery={updateQuery} />
+      <TextFilter query={query} updateQuery={updateQuery} />
+      {/* <TitleFilter query={query} updateQuery={updateQuery} />
       <AbstractFilter query={query} updateQuery={updateQuery} />
-      <YearFilter query={query} updateQuery={updateQuery} />
+      <YearFilter query={query} updateQuery={updateQuery} /> */}
       {content}
     </div>
   )
