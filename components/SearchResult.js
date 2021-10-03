@@ -1,9 +1,26 @@
+import { useContext } from "react";
 import Link from "next/link";
+import { StoreContext } from "../lib/store"
+
+function getBestNodeName(nodes, datasource) {
+  const idx = nodes.findIndex(e => e.identifier === datasource)
+
+  if (idx === -1) {
+    return datasource
+  }
+
+  return nodes[idx].name
+}
 
 export default function SearchResult({ index, doc }) {
   const radius = 30
 
   const zebra = index % 2 ? "search-result-even" : "search-resultodd"
+
+  const { nodes } = useContext(StoreContext)
+
+  // Produce best node name
+  const nodeName = getBestNodeName(nodes[0], doc.datasource);
 
   return <div className={"search-result " + zebra}>
     <div className="search-result-icon">
@@ -13,7 +30,7 @@ export default function SearchResult({ index, doc }) {
     </div>
     <div className="search-result-text">
       <Link href={"/package/" + encodeURIComponent(doc.id)}>
-        <a>{doc.origin.join(", ")}. {doc.pubDate.substr(0, 4)}. <span className="search-result-text-title">{doc.title}</span>. {doc.datasource}. <span className="search-result-text-identifier">{doc.id}</span></a>
+        <a>{doc.origin.join(", ")}. {doc.pubDate.substr(0, 4)}. <span className="search-result-text-title">{doc.title}</span>. {nodeName}. <span className="search-result-text-identifier">{doc.id}</span></a>
       </Link>
       {!doc.isPublic ? "🔐" : ""}
     </div>
