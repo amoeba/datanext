@@ -10,7 +10,8 @@ body {
   box-sizing: border-box;
 }
 
-input, textarea {
+input,
+textarea {
   max-width: 100%;
 }
 
@@ -163,6 +164,21 @@ table.package-table td {
 
 .search-result-text {
   width: 100%;
+}
+
+.search-result-text a,
+.search-result-text a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.search-result-text-title {
+  font-weight: bold;
+  color: rgb(64, 157, 180);
+}
+
+.search-result-text-identifier {
+  color: #aaa;
 }
 
 .search-result.loading > .search-result-text > div {
