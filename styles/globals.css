@@ -164,6 +164,7 @@ table.package-table td {
 
 .search-result-text {
   width: 100%;
+  word-break: break-word;
 }
 
 .search-result-text a,
