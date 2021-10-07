@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FilterProps } from "../../lib/types"
+import { FilterProps, Operation } from "../../lib/types"
 
 export default function CheckboxFilter({ field, updateQuery } : FilterProps) {
   const [isChecked, setIsChecked] = useState(false)
@@ -8,7 +8,7 @@ export default function CheckboxFilter({ field, updateQuery } : FilterProps) {
     setIsChecked(e.target.checked ? true : false)
 
     const updateOperation = {
-      operation: e.target.checked ? "set" : "unset",
+      operation: e.target.checked ? Operation.SET : Operation.UNSET,
       field: field,
       value: "*"
     }

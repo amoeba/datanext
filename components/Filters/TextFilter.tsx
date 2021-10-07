@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { FilterProps } from "../../lib/types"
+import { ChangeEventHandler, useState } from "react";
+import { FilterProps, Operation } from "../../lib/types"
 
 export default function TextFilter({ field, updateQuery } : FilterProps) {
   const [value, setValue] = useState("")
@@ -8,7 +8,7 @@ export default function TextFilter({ field, updateQuery } : FilterProps) {
     setValue(e.target.value);
 
     const updateOperation = {
-      operation: e.target.value.length > 0 ? "set" : "unset",
+      operation: e.target.value.length > 0 ? Operation.SET : Operation.UNSET,
       field: field,
       value: e.target.value
     }
