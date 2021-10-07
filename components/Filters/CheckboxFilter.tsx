@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { FilterProps, Operation } from "../../lib/types"
 
-export default function CheckboxFilter({ field, updateQuery } : FilterProps) {
-  const [isChecked, setIsChecked] = useState(false)
+export default function CheckboxFilter({ field, initialState, updateQuery } : FilterProps) {
+  const [isChecked, setIsChecked] = useState(initialState)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked ? true : false)

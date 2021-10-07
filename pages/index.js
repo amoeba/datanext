@@ -59,7 +59,7 @@ export default function Search() {
       </Head>
       <TextFilter field="text" updateQuery={updateQuery} />
       <TextFilter field="title" updateQuery={updateQuery} />
-      <CheckboxFilter field="-obsoletedBy" updateQuery={updateQuery} />
+      <CheckboxFilter field="-obsoletedBy" initialState={true} updateQuery={updateQuery} />
       {content}
     </div>
   )
