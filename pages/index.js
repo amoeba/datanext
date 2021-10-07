@@ -5,12 +5,8 @@ import { useRouter } from "next/router";
 import React, { useState, useContext } from "react";
 import useSWR from "swr";
 
-import SearchResultLoaders from "../components/SearchResultLoaders";
 import SearchResults from "../components/SearchResults";
 import SearchLoader from "../components/SearchLoader";
-import TitleFilter from "../components/Filters/TitleFilter";
-import AbstractFilter from "../components/Filters/AbstractFilter";
-import YearFilter from "../components/Filters/YearFilter";
 import TextFilter from "../components/Filters/TextFilter";
 import CheckboxFilter from "../components/Filters/CheckboxFilter";
 import ErrorMessage from "../components/ErrorMessage"

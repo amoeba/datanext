@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { FilterProps } from "../../lib/types"
 
-export default function TextFilter({ field, updateQuery }) {
+export default function TextFilter({ field, updateQuery } : FilterProps) {
   const [value, setValue] = useState("")
 
   const handleChange = (e) => {
@@ -15,8 +16,8 @@ export default function TextFilter({ field, updateQuery }) {
     updateQuery(updateOperation)
   }
 
-  return <div class="input-group">
-    <div className="input-group-name">Latest Versions Only</div>
+  return <div className="input-group">
+    <div className="input-group-name">{ field }</div>
     <div className="input-group-controls">
       <input type="text" value={value} onChange={handleChange} placeholder="Enter a query" />
     </div>
