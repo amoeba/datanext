@@ -4,7 +4,7 @@ import { FilterProps, Operation } from "../../lib/types"
 export default function CheckboxFilter({ field, updateQuery } : FilterProps) {
   const [isChecked, setIsChecked] = useState(false)
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked ? true : false)
 
     const updateOperation = {

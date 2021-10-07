@@ -4,7 +4,7 @@ import { FilterProps, Operation } from "../../lib/types"
 export default function TextFilter({ field, updateQuery } : FilterProps) {
   const [value, setValue] = useState("")
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
 
     const updateOperation = {
