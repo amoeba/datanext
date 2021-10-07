@@ -12,6 +12,7 @@ import TitleFilter from "../components/Filters/TitleFilter";
 import AbstractFilter from "../components/Filters/AbstractFilter";
 import YearFilter from "../components/Filters/YearFilter";
 import TextFilter from "../components/Filters/TextFilter";
+import CheckboxFilter from "../components/Filters/CheckboxFilter";
 import ErrorMessage from "../components/ErrorMessage"
 import { default_query, to_solr_query_params } from "../lib/api"
 import { StoreContext } from "../lib/store";
@@ -23,8 +24,24 @@ export default function Search() {
   const [query, setQuery] = useState(default_query())
 
   // Debounced setQuery
-  const updateQuery = _.debounce((value) => {
-    setQuery(_.merge(_.clone(query), value))
+  const updateQuery = _.debounce((op) => {
+    if (op.operation === "set") {
+      const merge = {
+        "q": {
+          [op.field]: op.value
+        }
+      }
+
+      setQuery(_.merge(_.clone(query), merge));
+    } else if (op.operation == "unset") {
+      let newQuery = _.clone(query);
+      newQuery["q"] = _.omit(newQuery["q"], op.field);
+
+      setQuery(newQuery);
+    } else {
+      console.log("Abort!")
+    }
+
   }, 300)
 
   // Auth
@@ -43,10 +60,9 @@ export default function Search() {
       <Head>
         <title>Search</title>
       </Head>
-      <TextFilter query={query} updateQuery={updateQuery} />
-      {/* <TitleFilter query={query} updateQuery={updateQuery} />
-      <AbstractFilter query={query} updateQuery={updateQuery} />
-      <YearFilter query={query} updateQuery={updateQuery} /> */}
+      <TextFilter field="text" updateQuery={updateQuery} />
+      <TextFilter field="title" updateQuery={updateQuery} />
+      <CheckboxFilter field="-obsoletedBy" updateQuery={updateQuery} />
       {content}
     </div>
   )

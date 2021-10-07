@@ -1,9 +1,24 @@
 import { useState } from "react";
 
-export default function TextFilter({ query, updateQuery }) {
+export default function TextFilter({ field, updateQuery }) {
   const [value, setValue] = useState("")
 
-  return <div className="input-jumbotron">
-    <input type="text" value={value} onChange={(e) => { setValue(e.target.value); updateQuery({ "q": { "text": e.target.value || "*" } }) }} placeholder="Enter a query" />
+  const handleChange = (e) => {
+    setValue(e.target.value);
+
+    const updateOperation = {
+      operation: e.target.value.length > 0 ? "set" : "unset",
+      field: field,
+      value: e.target.value
+    }
+
+    updateQuery(updateOperation)
+  }
+
+  return <div className="input-group">
+    <div className="input-group-name">{ field }</div>
+    <div className="input-group-controls">
+      <input type="text" value={value} onChange={handleChange} placeholder="Enter a query" />
+    </div>
   </div>
 }
