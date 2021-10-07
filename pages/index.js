@@ -12,6 +12,7 @@ import CheckboxFilter from "../components/Filters/CheckboxFilter";
 import ErrorMessage from "../components/ErrorMessage"
 import { default_query, to_solr_query_params } from "../lib/api"
 import { StoreContext } from "../lib/store";
+import { Operation } from "../lib/types";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -21,7 +22,7 @@ export default function Search() {
 
   // Debounced setQuery
   const updateQuery = _.debounce((op) => {
-    if (op.operation === "set") {
+    if (op.operation === Operation.SET) {
       const merge = {
         "q": {
           [op.field]: op.value
@@ -29,7 +30,7 @@ export default function Search() {
       }
 
       setQuery(_.merge(_.clone(query), merge));
-    } else if (op.operation == "unset") {
+    } else if (op.operation == Operation.UNSET) {
       let newQuery = _.clone(query);
       newQuery["q"] = _.omit(newQuery["q"], op.field);
 
