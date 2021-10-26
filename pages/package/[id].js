@@ -2,12 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import useSWR from "swr";
+import { useContext } from "react";
 
 import DebugBox from "../../components/DebugBox";
 import ErrorMessage from "../../components/ErrorMessage";
 import MetadataView from "../../components/MetadataView";
 import Packages from "../../components/Packages";
 import { object } from "../../lib/api";
+import { StoreContext } from "../../lib/store";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -15,7 +17,10 @@ export default function Package() {
   const router = useRouter()
   const { id } = router.query
 
-  const { data, error } = useSWR(object(id), fetcher)
+  // Auth
+  const { token } = useContext(StoreContext)
+
+  const { data, error } = useSWR([object(id), token[0]], (url, token) => fetcher(url, { headers: { "Authorization": "Bearer " + token } }));
 
   if (error) return <ErrorMessage error={error} />
   if (!data) return <div className="loading">loading</div>

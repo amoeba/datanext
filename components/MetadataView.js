@@ -1,10 +1,12 @@
 import useSWR from "swr";
+import { useContext } from "react";
 
 import ErrorMessage from "./ErrorMessage";
 import { view } from "../lib/api";
+import { StoreContext } from "../lib/store";
 
-const fetcher = async url => {
-  const res = await fetch(url)
+const fetcher = async (url, token) => {
+  const res = await fetch(url, { headers: { "Authorization": "Bearer " + token } });
 
   if (!res.ok) {
     const error = new Error('An error occurred while fetching the data.')
@@ -19,7 +21,8 @@ const fetcher = async url => {
 }
 
 export default function MetadataView({ id }) {
-  const { data, error } = useSWR(view(id), fetcher);
+  const { token } = useContext(StoreContext)
+  const { data, error } = useSWR([view(id), token[0]], fetcher);
 
   if (error) return <ErrorMessage error={error} />
   if (!data) return <div className="loading">Loading...</div>;
