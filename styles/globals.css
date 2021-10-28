@@ -102,6 +102,7 @@ table.package-table td {
 .input-group-name {
   text-align: right;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .input-group-controls {
