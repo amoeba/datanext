@@ -11,6 +11,7 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <meta name="description" content="DataNext Search Catalog" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="preconnect" href="https://search.dataone.org" />
           <link rel="preconnect" href="https://cn.dataone.org" />
         </Head>
