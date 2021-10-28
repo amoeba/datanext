@@ -16,10 +16,10 @@ export default function CheckboxFilter({ field, initialState, updateQuery } : Fi
     updateQuery(updateOperation);
   }
 
-  return (<div className="input-group">
-    <div className="input-group-name">{ field }</div>
+  return (<label className="input-group">
+    <span className="input-group-name">{ field }</span>
     <div className="input-group-controls">
       <input type="checkbox" checked={isChecked} onChange={handleChange} />
     </div>
-  </div>)
+  </label>)
 }

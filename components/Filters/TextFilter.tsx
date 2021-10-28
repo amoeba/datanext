@@ -16,10 +16,10 @@ export default function TextFilter({ field, updateQuery } : FilterProps) {
     updateQuery(updateOperation)
   }
 
-  return <div className="input-group">
-    <div className="input-group-name">{ field }</div>
+  return <label className="input-group">
+    <span className="input-group-name">{ field }</span>
     <div className="input-group-controls">
       <input type="text" value={value} onChange={handleChange} placeholder="Enter a query" />
     </div>
-  </div>
+  </label>
 }
