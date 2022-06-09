@@ -23,7 +23,7 @@ header a:visited,
 header nav a,
 header nav a:visited {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 #topbar,
@@ -35,12 +35,12 @@ main {
 #topbar {
   display: flex;
   justify-content: flex-end;
-  background-color: rgb(56, 138, 158);
 }
 
 header {
   display: flex;
-  background-color: rgb(64, 157, 180);
+  background-color: #16acc0;
+  color: white;
 }
 
 header h1 {
@@ -53,20 +53,13 @@ header nav {
   display: flex;
   flex-grow: 2;
   justify-content: flex-end;
-  align-items: flex-end;
+  align-items: center;
+  gap: 1em;
 }
 
 header nav a {
   display: block;
   padding: 0 0.5rem;
-}
-
-header nav a:first-child {
-  padding-left: 0;
-}
-
-header nav a:last-child {
-  padding-right: 0;
 }
 
 .package-table-wrapper {
