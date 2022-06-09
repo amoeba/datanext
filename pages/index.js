@@ -21,15 +21,6 @@ export default function Search() {
   // Set query parameters from state
   const router = useRouter();
 
-  // Do a shallow route to update the URL
-  useEffect(() => {
-    if (typeof query[0]["q"]["text"] !== "undefined") {
-      router.push("/?q=" + query[0]["q"]["text"], undefined, {
-        shallow: false,
-      });
-    }
-  }, []);
-
   // Debounced setQuery
   // TODO: This area needs a refactor, it's messy
   const updateQuery = _.debounce((op) => {
@@ -53,17 +44,6 @@ export default function Search() {
       console.log("Abort!");
     }
   }, 300);
-
-  // Update state from URL
-  // TODO: This causes a flash because we should be handling this at the app
-  // level and not all the way down here
-  if (typeof router.query["q"] !== "undefined") {
-    updateQuery({
-      operation: Operation.SET,
-      field: "text",
-      value: router.query["q"],
-    });
-  }
 
   // Auth
   const { token } = useContext(StoreContext);
