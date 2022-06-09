@@ -1,8 +1,10 @@
-import { ChangeEventHandler, useState } from "react";
+import { useState } from "react";
 import { FilterProps, Operation } from "../../lib/types"
 
-export default function Omnibar({ field, updateQuery } : FilterProps) {
-  const [value, setValue] = useState("")
+export default function Omnibar({ field, initialState, updateQuery } : FilterProps) {
+  // We force a copy of initialState since initialState is managed by the
+  // Context
+  const [value, setValue] = useState(initialState ? initialState.slice() : "")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

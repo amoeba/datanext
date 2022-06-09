@@ -2,27 +2,39 @@ import { search } from "../lib/api";
 import _ from "lodash";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import useSWR from "swr";
 
 import SearchResults from "../components/SearchResults";
 import SearchLoader from "../components/SearchLoader";
-import TextFilter from "../components/Filters/TextFilter";
 import Omnibar from "../components/Filters/Omnibar";
-import CheckboxFilter from "../components/Filters/CheckboxFilter";
 import ErrorMessage from "../components/ErrorMessage";
-import { default_query, to_solr_query_params } from "../lib/api";
 import { StoreContext } from "../lib/store";
 import { Operation } from "../lib/types";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Search() {
-  // Set initial state
-  const [query, setQuery] = useState(default_query());
+  // Set state from context
+  const { query } = useContext(StoreContext);
+
+  // Set query parameters from state
+  const router = useRouter();
+
+  // Do a shallow route to update the URL
+  useEffect(() => {
+    if (typeof query[0]["q"]["text"] !== "undefined") {
+      router.push("/?q=" + query[0]["q"]["text"], undefined, {
+        shallow: false,
+      });
+    }
+  }, []);
 
   // Debounced setQuery
+  // TODO: This area needs a refactor, it's messy
   const updateQuery = _.debounce((op) => {
+    let newQuery;
+
     if (op.operation === Operation.SET) {
       const merge = {
         q: {
@@ -30,24 +42,37 @@ export default function Search() {
         },
       };
 
-      setQuery(_.merge(_.clone(query), merge));
+      newQuery = _.merge(_.clone(query[0]), merge);
+      query[1](newQuery);
+      router.push("/?q=" + newQuery["q"]["text"], undefined, { shallow: true });
     } else if (op.operation == Operation.UNSET) {
-      let newQuery = _.clone(query);
+      newQuery = _.clone(query[0]);
       newQuery["q"] = _.omit(newQuery["q"], op.field);
-
-      setQuery(newQuery);
+      query[1](newQuery);
     } else {
       console.log("Abort!");
     }
   }, 300);
 
+  // Update state from URL
+  // TODO: This causes a flash because we should be handling this at the app
+  // level and not all the way down here
+  if (typeof router.query["q"] !== "undefined") {
+    updateQuery({
+      operation: Operation.SET,
+      field: "text",
+      value: router.query["q"],
+    });
+  }
+
   // Auth
   const { token } = useContext(StoreContext);
 
   // Fetch
-  const { data, error } = useSWR([search(query), token[0]], (url, token) =>
+  const { data, error } = useSWR([search(query[0]), token[0]], (url, token) =>
     fetcher(url, { headers: { Authorization: "Bearer " + token } })
   );
+
   let content;
 
   if (error || (data && (!data.response || !data.response.docs)))
@@ -58,9 +83,15 @@ export default function Search() {
   return (
     <div>
       <Head>
-        <title>Search</title>
+        <title>
+          Search{query[0]["q"]["text"] ? ": " + query[0]["q"]["text"] : ""}
+        </title>
       </Head>
-      <Omnibar field="text" updateQuery={updateQuery} />
+      <Omnibar
+        field="text"
+        initialState={query[0]["q"]["text"]}
+        updateQuery={updateQuery}
+      />
       {/* <TextFilter field="text" updateQuery={updateQuery} /> */}
       {/* <TextFilter field="title" updateQuery={updateQuery} /> */}
       {/* <CheckboxFilter field="-obsoletedBy" initialState={true} updateQuery={updateQuery} /> */}
