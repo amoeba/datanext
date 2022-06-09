@@ -8,26 +8,27 @@ import useSWR from "swr";
 import SearchResults from "../components/SearchResults";
 import SearchLoader from "../components/SearchLoader";
 import TextFilter from "../components/Filters/TextFilter";
+import Omnibar from "../components/Filters/Omnibar";
 import CheckboxFilter from "../components/Filters/CheckboxFilter";
-import ErrorMessage from "../components/ErrorMessage"
-import { default_query, to_solr_query_params } from "../lib/api"
+import ErrorMessage from "../components/ErrorMessage";
+import { default_query, to_solr_query_params } from "../lib/api";
 import { StoreContext } from "../lib/store";
 import { Operation } from "../lib/types";
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Search() {
   // Set initial state
-  const [query, setQuery] = useState(default_query())
+  const [query, setQuery] = useState(default_query());
 
   // Debounced setQuery
   const updateQuery = _.debounce((op) => {
     if (op.operation === Operation.SET) {
       const merge = {
-        "q": {
-          [op.field]: op.value
-        }
-      }
+        q: {
+          [op.field]: op.value,
+        },
+      };
 
       setQuery(_.merge(_.clone(query), merge));
     } else if (op.operation == Operation.UNSET) {
@@ -36,31 +37,34 @@ export default function Search() {
 
       setQuery(newQuery);
     } else {
-      console.log("Abort!")
+      console.log("Abort!");
     }
-
-  }, 300)
+  }, 300);
 
   // Auth
-  const { token } = useContext(StoreContext)
+  const { token } = useContext(StoreContext);
 
   // Fetch
-  const { data, error } = useSWR([search(query), token[0]], (url, token) => fetcher(url, { headers: { "Authorization": "Bearer " + token } }))
-  let content
+  const { data, error } = useSWR([search(query), token[0]], (url, token) =>
+    fetcher(url, { headers: { Authorization: "Bearer " + token } })
+  );
+  let content;
 
-  if (error || (data && (!data.response || !data.response.docs))) content = <ErrorMessage data={data} error={error} />
-  if (!data) content = <SearchLoader />
-  if (data) content = <SearchResults data={data} />
+  if (error || (data && (!data.response || !data.response.docs)))
+    content = <ErrorMessage data={data} error={error} />;
+  if (!data) content = <SearchLoader />;
+  if (data) content = <SearchResults data={data} />;
 
   return (
     <div>
       <Head>
         <title>Search</title>
       </Head>
-      <TextFilter field="text" updateQuery={updateQuery} />
-      <TextFilter field="title" updateQuery={updateQuery} />
-      <CheckboxFilter field="-obsoletedBy" initialState={true} updateQuery={updateQuery} />
+      <Omnibar field="text" updateQuery={updateQuery} />
+      {/* <TextFilter field="text" updateQuery={updateQuery} /> */}
+      {/* <TextFilter field="title" updateQuery={updateQuery} /> */}
+      {/* <CheckboxFilter field="-obsoletedBy" initialState={true} updateQuery={updateQuery} /> */}
       {content}
     </div>
-  )
+  );
 }

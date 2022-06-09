@@ -62,6 +62,11 @@ header nav a {
   padding: 0 0.5rem;
 }
 
+.omnibar input {
+  padding: 0.25em;
+  width: 100%;
+}
+
 .package-table-wrapper {
   max-height: 300px;
   overflow-y: scroll;
