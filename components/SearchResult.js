@@ -35,12 +35,12 @@ export default function SearchResult({ index, doc }) {
           <circle r="50%" cx="50%" cy="50%" fill="rgba(200, 200, 200, 0.75)" />
           <text
             fill="rgba(120, 120, 120, 0.75)"
-            font-size="200%"
-            text-anchor="middle"
-            alignment-baseline="central"
+            fontSize="200%"
+            textAnchor="middle"
+            alignmentBaseline="central"
             x="50%"
             y="50%"
-            font-family="Menlo, Monaco, monospace"
+            fontFamily="Menlo, Monaco, monospace"
           >
             {doc.datasource.replace("urn:node:", "").substring(0, 1)}
           </text>
